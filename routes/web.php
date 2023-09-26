@@ -17,7 +17,7 @@ use App\Livewire\Post;
 Route::get('/', function () {
     return view('welcome');
 });
-//Route::get('/post', Post::class);
+Route::get('/post', Post::class);
 
 Route::middleware([
     'auth:sanctum',
