@@ -96,10 +96,10 @@
                         <x-slot name="content">
                             <!-- Account Management -->
                             <div class="block px-4 py-2 text-xs text-gray-400">
-                                {{ __('Managar conta') }}
+                                {{ __('Manegar conta') }}
                             </div>
 
-                            <x-dropdown-link href="{{ route('profile.show') }}">
+                            <x-dropdown-link href="{{ route('profile.show') }}"  class="nav-link" >
                                 {{ __('Perfil') }}
                             </x-dropdown-link>
 
@@ -115,7 +115,7 @@
                             <form method="POST" action="{{ route('logout') }}" x-data>
                                 @csrf
 
-                                <x-dropdown-link href="{{ route('logout') }}"
+                                <x-dropdown-link href="{{ route('logout') }}"  class="nav-link" 
                                          @click.prevent="$root.submit();">
                                     {{ __('Terminar sessão') }}
                                 </x-dropdown-link>
