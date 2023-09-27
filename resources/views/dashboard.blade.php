@@ -1,15 +1,85 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <x-welcome />
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu" style="background-color: gainsboro;">
+                        <div class="nav ">
+
+                            <a class="nav-link" href="#" style="background-color: green; margin-top: 10px; border-radius: 50px; text-align:justify;">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Funcionarios
+                            </a>
+
+                            <a class="nav-link" href="#">
+                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                                Alunos
+                            </a>
+                            
+                            <a class="nav-link" href="#">
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                Turmas
+                            </a>
+                            <a class="nav-link" href="#">
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                Disciplinas
+                            </a>
+                            <a class="nav-link" href="#">
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                Pautas
+                            </a>
+                            <a class="nav-link" href="#">
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                Faltas
+                            </a>
+                            <a class="nav-link" href="#">
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                Matriculas
+                            </a>
+                            <a class="nav-link">
+                                    <button type="button"  class="btn"  style="color: grey;"
+                                     data-bs-toggle="modal" data-bs-target="#fazerpublicidade">Informação</button>
+                            </a>
+
+                        </div>
+                    </div>
+                    <div class="sb-sidenav-footer">
+                        <div class="small">Logotipo:</div>
+                        SIIP
+                    </div>
+                </nav>
             </div>
+
+
+            <div id="layoutSidenav_content">
+                <main>
+                
+                    <div class="container-fluid px-4">
+                        SIIP
+                    </div>
+                </main>
+
+
+
         </div>
     </div>
+    
+
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; SIIP</div>
+                            <div>
+                                <a href="#">Pulitica de Privacidade</a>
+                                &middot;
+                                <a href="#">Termos  &amp; Condições</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+
+
+   
 </x-app-layout>

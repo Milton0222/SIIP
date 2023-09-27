@@ -16,7 +16,7 @@ use App\Livewire\Post;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('/');
 Route::get('/post', Post::class);
 
 Route::middleware([
