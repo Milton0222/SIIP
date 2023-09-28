@@ -15,6 +15,16 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
         <!-- Styles -->
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.css')}}">
+        <link href="{{ asset('assetes/css/styles.css')}}" rel="stylesheet" />
+
+        <script src="{{ asset('js/app.js') }}" defer></script>
+        <script src="{{ asset('assetes/js/scripts.js')}}"></script>
+        <script src="{{ asset('assetes/demo/chart-area-demo.js')}}"></script>
+        <script src="{{asset('assetes/demo/chart-bar-demo.js')}}"></script>
+        <script src="{{ asset('assetes/js/datatables-simple-demo.js')}}"></script>
+        <script src="{{ asset('bootstrap/js/bootstrap.js')}}"></script>
         @livewireStyles
     </head>
     <body class="font-sans antialiased">

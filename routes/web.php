@@ -16,7 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 })->name('/');
+<<<<<<< HEAD
 //Route::get('/post', Post::class);
+=======
+Route::get('/post', Post::class);
+>>>>>>> e12d6289ae2c3f62a472e6fef7f6320401d9515b
 
 Route::middleware([
     'auth:sanctum',
