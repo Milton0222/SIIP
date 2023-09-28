@@ -23,6 +23,10 @@ class CreateAlunosTable extends Migration
             $table->string('telefone');
             $table->string('data_nascimento');
             $table->smallInteger('idade');
+            $table->foreignId('user_id')
+            ->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
             $table->timestamps();
         });
     }
