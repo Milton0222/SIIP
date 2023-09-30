@@ -6,37 +6,35 @@
                     <div class="sb-sidenav-menu" style="background-color: gainsboro;">
                         <div class="nav ">
 
-                            <a class="nav-link" href="{{route('funcionario.index')}}" style="background-color: green; margin-top: 10px; border-radius: 50px; text-align:justify;">
-                                <div class="sb-nav-link-icon"><i class="bi bi-person-plus-fill"></i></div>
+                            <a class="nav-link" href="#" style="background-color: green; margin-top: 10px; border-radius: 50px; text-align:justify;">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Funcionarios
                             </a>
 
                             <a class="nav-link" href="{{route('aluno.index')}}">
-                                <div class="sb-nav-link-icon"><i class="bi bi-person-vcard"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Alunos
                             </a>
-                            
-                            <a class="nav-link" href="{{route('turma.index')}}">
-                                <div class="sb-nav-link-icon"><i class="bi bi-pip-fill"></i></div>
-                                Turmas
-                            </a>
                             <a class="nav-link" href="{{route('disciplina.index')}}">
-                                <div class="sb-nav-link-icon"><i class="bi bi-card-checklist"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Disciplinas
                             </a>
                             <a class="nav-link" href="#">
-                                <div class="sb-nav-link-icon"><i class="bi bi-table"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Pautas
                             </a>
                             <a class="nav-link" href="#">
-                                <div class="sb-nav-link-icon"><i class="bi bi-person-dash-fill"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Faltas
                             </a>
                             <a class="nav-link" href="#">
-                                <div class="sb-nav-link-icon"><i class="bi bi-person-fill-check"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Matriculas
                             </a>
-                           
+                            <a class="nav-link">
+                                    <button type="button"  class="btn"  style="color: grey;"
+                                     data-bs-toggle="modal" data-bs-target="#fazerpublicidade">Informação</button>
+                            </a>
 
                         </div>
                     </div>
@@ -51,11 +49,7 @@
                 <main>
                 
                     <div class="container-fluid px-4">
-                        SIIP
-
-                        <button type="button"  class="btn btn-success"
-                                     data-bs-toggle="modal" data-bs-target="#fazerpublicidade">Informação
-                        </button>
+                        SIIP-turmas
                     </div>
                 </main>
 
