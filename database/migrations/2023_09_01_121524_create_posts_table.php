@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('titulo');
             $table->string('contente');
+            $table->string('arquivo');
             $table->timestamps();
         });
     }

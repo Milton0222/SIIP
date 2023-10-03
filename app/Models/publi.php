@@ -10,5 +10,5 @@ class publi extends Model
     use HasFactory;
 
     protected $table="posts";
-    protected $fillable=['titulo','contente'];
+    protected $fillable=['titulo','contente','arquivo'];
 }

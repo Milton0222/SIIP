@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class matricula extends Model
 {
     use HasFactory;
+    protected $fillable=(['data','anoLectivo','turma','aluno','curso'])
 }

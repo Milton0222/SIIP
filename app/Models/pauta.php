@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class pauta extends Model
 {
     use HasFactory;
+    protected $fillable=(['valor','classificacao','aluno','disciplina','turma']);
 }
