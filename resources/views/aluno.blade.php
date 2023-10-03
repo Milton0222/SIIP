@@ -135,6 +135,86 @@
             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#apagar"><i class="bi bi-trash3-fill"></i></button>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#apagar"><i class="bi bi-eye-fill"></i></button>
+   <!--Inicio Modal inserir aluno-->
+   <div class="modal fade" id="Inscrição" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: green;">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Formulario de inscrição</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+             <form action="{{ route('aluno.store') }}"  method="POST" class="row g-3"enctype="multipart/form-data">
+                @csrf
+                <div>
+                <x-label for="name" value="{{ __('Nome') }}" />
+                <x-input id="name" class="block mt-1 w-full" type="text" name="nome" :value="old('nome')" required autofocus autocomplete="nome" />
+              </div>
+              <div class="mt-4">
+                <x-label for="email" value="{{ __('Pai') }}" />
+                <x-input id="email" class="block mt-1 w-full" type="text" name="pai" :value="old('pai')" required  />
+            </div>
+            <div class="mt-4">
+                <x-label for="email" value="{{ __('Mãe') }}" />
+                <x-input id="email" class="block mt-1 w-full" type="text" name="mae" :value="old('mae')" required  />
+            </div>
+
+            <div class="mt-4">
+                <x-label for="email" value="{{ __('Data Nascimento') }}" />
+                <x-input id="email" class="block mt-1 w-full" type="date" name="data_nascimento" :value="old('data_nascimento')" required />
+            </div>
+            <div class="mt-4">
+                <x-label for="email" value="{{ __('Idade') }}" />
+                <x-input id="email" class="block mt-1 w-full" type="numeric" name="idade" :value="old('idade')" required  />
+            </div>
+
+            <div class="mt-4">
+                <x-label for="password" value="{{ __('Naturalidade') }}" />
+                <x-input id="password" class="block mt-1 w-full" type="text" name="naturalidade" required autocomplete="Angola" />
+            </div>
+
+            <div class="mt-4">
+                <x-label for="password_confirmation" value="{{ __('Provincia') }}" />
+                <x-input id="password_confirmation" class="block mt-1 w-full" type="text" name="provincia" required autocomplete="Benguela" />
+            </div>
+            <div class="mt-4">
+                <x-label for="password_confirmation" value="{{ __('Municipio') }}" />
+                <x-input id="password_confirmation" class="block mt-1 w-full" type="text" name="municipio" value="{{$aluno->municipio}}" required autocomplete="Benguela" />
+            </div>
+            <div class="mt-4">
+                <x-label for="password_confirmation" value="{{ __('Telefone') }}" />
+                <x-input id="password_confirmation" class="block mt-1 w-full" type="text" name="telefone" required value="{{$aluno->telefone}}"  />
+            </div>
+                <div class="col-md-4">
+                    <label for="inputState" class="form-label">Genero</label>
+                    <select id="inputState" class="form-select" name="genero">
+                    <option value="{{$aluno->genero}}" selected>{{$aluno->genero}}</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="inputState" class="form-label">Usuario</label>
+                    <select id="inputState" class="form-select" name="usuario">
+                    <option value="{{Auth::user()->id}}" selected>{{Auth::user()->name}}</option>
+                    
+                    </select>
+                </div>
+                <div class="mb-3">
+                <label for="formFileSm" class="form-label">Carregar foto</label>
+                <input class="form-control form-control-sm" id="formFileSm" type="file" name="foto">
+               </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </form>
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+    <!--Fim Modal ver-->
+
                     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#apagar"><i class="bi bi-pencil-square"></i></button>
             </div>
         </TD>
