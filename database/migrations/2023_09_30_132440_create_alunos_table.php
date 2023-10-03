@@ -19,6 +19,8 @@ return new class extends Migration
             $table->enum('genero',['F','M']);
             $table->string('foto');
             $table->string('naturalidade');
+            $table->string('provincia');
+            $table->string('municipio');
             $table->string('telefone');
             $table->date('data_nascimento');
             $table->unsignedBigInteger('usuario');

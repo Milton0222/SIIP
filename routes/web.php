@@ -24,6 +24,7 @@ Route::get('/', function () {
 Route::get('/post', Post::class);
 
 Route::get('/alunos/show',[alunoController::class, 'index'])->name('aluno.index')->middleware('auth');
+Route::post('/aluno/store',[alunoController::class , 'store'])->name('aluno.store');
 Route::get('/turma/show',[turmaController::class, 'index'])->name('turma.index');
 Route::get('/disciplina/show',[disciplinaController::class, 'index'])->name('disciplina.index');
 Route::get('/funcionario/shhow', [funcionariosController::class ,'index'])->name('funcionario.index')->middleware(['auth']);

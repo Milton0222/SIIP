@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\aluno;
 
 class alunoController extends Controller
 {
@@ -12,7 +13,9 @@ class alunoController extends Controller
     public function index()
     {
         //ver alunos na view
-        return view('aluno');
+
+        $alunos=aluno::get();
+        return view('aluno',compact('alunos'));
     }
 
     /**
@@ -28,7 +31,34 @@ class alunoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //metodo inserir aluno
+       
+        if($request->foto !=null){
+
+            $extensao=$request->foto->extension();
+            $nomeFoto=strtotime('now').".".$extensao;
+            $request->foto->move(public_path('assets/arquivos'),$nomeFoto);
+
+            aluno::create([
+                'nome'=>$request->nome,
+                'pai'=>$request->pai,
+                'mae'=>$request->mae,
+                'data_nascimento'=>$request->data_nascimento,
+                'telefone'=>$request->telefone,
+                'provincia'=>$request->provincia,
+                'municipio'=>$request->municipio,
+                'usuario'=>$request->usuario,
+                'genero'=>$request->genero,
+                'foto'=>$nomeFoto,
+                'idade'=>$request->idade,
+                'naturalidade'=>$request->naturalidade
+            ]);
+            return redirect()->back();
+
+        }else{
+            return redirect()->back();
+        }
+       
     }
 
     /**
