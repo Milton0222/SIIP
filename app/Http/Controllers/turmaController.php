@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\turma;
 use Illuminate\Http\Request;
 
 use function PHPUnit\Framework\returnSelf;
@@ -13,8 +14,9 @@ class turmaController extends Controller
      */
     public function index()
     {
-        //
-        return view('turma');
+        //vizualizar
+        $turmas=turma::get();
+        return view('turma',compact('turmas'));
     }
 
     /**
@@ -30,7 +32,11 @@ class turmaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //inserir turma
+
+        turma::create($request
+        ->all());
+        return redirect()->back();
     }
 
     /**
@@ -62,6 +68,12 @@ class turmaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        //apagando turma
+        if($turmas=turma::findorfail($id)){
+            $turmas->delete();
+            return redirect()->back();
+        }else{
+            return redirect()->back();
+        }
     }
 }

@@ -90,6 +90,15 @@ class alunoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        //metodo apagar
+
+       if($alunos=aluno::findorfail($id)){
+        unlink('assets/arquivos/'.$alunos->foto);
+          $alunos->delete();
+        return redirect()->back();
+       }else{
+        return redirect()->back();
+       }
+        
     }
 }

@@ -25,8 +25,16 @@ Route::get('/post', Post::class);
 
 Route::get('/alunos/show',[alunoController::class, 'index'])->name('aluno.index')->middleware('auth');
 Route::post('/aluno/store',[alunoController::class , 'store'])->name('aluno.store');
+Route::get('/aluno/apagar{id}',[alunoController::class , 'destroy'])->name('aluno.destroy');
+
 Route::get('/turma/show',[turmaController::class, 'index'])->name('turma.index');
+Route::post('/turma/store',[turmaController::class, 'store'])->name('turma.store');
+Route::get('/turma/apagar{id}',[turmaController::class,'destroy'])->name('turma.destroy');
+
 Route::get('/disciplina/show',[disciplinaController::class, 'index'])->name('disciplina.index');
+Route::post('/disciplina/store',[disciplinaController::class, 'store'])->name('disciplina.store');
+Route::get('/disciplina/apagar{id}', [disciplinaController::class, 'destroy'])->name('disciplina.destroy');
+
 Route::get('/funcionario/shhow', [funcionariosController::class ,'index'])->name('funcionario.index')->middleware(['auth']);
 Route::post('/funcionario/Salvar',[funcionariosController::class ,'store'])->name('funcionario.store');
 Route::get('/funcionario/Iliminar{id}',[funcionariosController::class ,'destroy'])->name('funcionario.destroy');

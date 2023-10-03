@@ -28,14 +28,8 @@
                                 <div class="sb-nav-link-icon"><i class="bi bi-table"></i></div>
                                 Pautas
                             </a>
-                            <a class="nav-link" href="#">
-                                <div class="sb-nav-link-icon"><i class="bi bi-person-dash-fill"></i></div>
-                                Faltas
-                            </a>
-                            <a class="nav-link" href="#">
-                                <div class="sb-nav-link-icon"><i class="bi bi-person-fill-check"></i></div>
-                                Matriculas
-                            </a>
+                            
+                           
                            
 
                         </div>
@@ -51,11 +45,15 @@
                 <main>
                 
                     <div class="container-fluid px-4">
-                        SIIP
+                    <table class="table table-hover caption-top">
+                                <caption> <h2 style="font-family: 'Courier New', Courier, monospace; font-size: x-large; color: black;">SIIP-Informações</h2></caption>
+                                <thead>
 
-                        <button type="button"  class="btn btn-success"
-                                     data-bs-toggle="modal" data-bs-target="#fazerpublicidade">Informação
-                        </button>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                    </table>
                     </div>
                 </main>
 

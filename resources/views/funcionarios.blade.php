@@ -76,7 +76,8 @@
 </div>
     <!--Fim Modal-->            
                     <div class="container-fluid px-4">
-                       <table class="table table-hover ">
+                       <table class="table table-hover caption-top">
+                       <caption> <h2 style="font-family: 'Courier New', Courier, monospace; font-size: x-large; color: black;">SIIP-Funcionarios</h2></caption>
                             <thead>
                                 <th>Id</th><th>Nome</th><th>Email</th><th>Permissao</th>
                             </thead>
@@ -88,7 +89,7 @@
                                     <td>{{$lista->email}}</td>
                                     <td><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#apagar{{$lista->id}}"><i class="bi bi-trash3-fill"></i></button>
                                 
-                                    <!--Inicio Modal-->
+<!--Inicio Modal-->
 <div class="modal fade" id="apagar{{$lista->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">

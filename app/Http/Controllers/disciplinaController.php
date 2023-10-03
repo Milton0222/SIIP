@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\disciplina;
 
 class disciplinaController extends Controller
 {
@@ -11,8 +12,10 @@ class disciplinaController extends Controller
      */
     public function index()
     {
-        //
-        return view('disciplina');
+        //vizulizar dados
+
+        $disciplinas=disciplina::get();
+        return view('disciplina', compact('disciplinas'));
     }
 
     /**
@@ -28,7 +31,15 @@ class disciplinaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //salvar  disciplina
+    
+
+        disciplina::create([
+            'nome'=>$request->nome,
+            'tipo'=>$request->tipo
+        ]);
+
+        return redirect()->back();
     }
 
     /**
@@ -60,6 +71,13 @@ class disciplinaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        //apagar disciplina
+
+        if($disciplinas=disciplina::findorfail($id)){
+            $disciplinas->delete();
+            return redirect()->back();
+        }else{
+            return redirect()->back();
+        }
     }
 }

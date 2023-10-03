@@ -6,36 +6,14 @@
                     <div class="sb-sidenav-menu" style="background-color: gainsboro;">
                         <div class="nav ">
 
-                            <a class="nav-link" href="#" style="background-color: green; margin-top: 10px; border-radius: 50px; text-align:justify;">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Funcionarios
-                            </a>
+                        <a class="nav-link" >
+                                <div class="sb-nav-link-icon"><i class="bi bi-person-fill-add"></i></div>
+                                <button type="button"  class="btn" style="color: white;"
+                                     data-bs-toggle="modal" data-bs-target="#Inscrição">Registo
+                               </button>
+                        </a>
 
-                            <a class="nav-link" href="{{route('aluno.index')}}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                                Alunos
-                            </a>
-                            <a class="nav-link" href="{{route('disciplina.index')}}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Disciplinas
-                            </a>
-                            <a class="nav-link" href="#">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Pautas
-                            </a>
-                            <a class="nav-link" href="#">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Faltas
-                            </a>
-                            <a class="nav-link" href="#">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Matriculas
-                            </a>
-                            <a class="nav-link">
-                                    <button type="button"  class="btn"  style="color: grey;"
-                                     data-bs-toggle="modal" data-bs-target="#fazerpublicidade">Informação</button>
-                            </a>
-
+                            
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
@@ -44,12 +22,114 @@
                 </nav>
             </div>
 
+<!--Inicio Modal inserir turma-->
+<div class="modal fade" id="Inscrição" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: green;">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Formulario de inscrição</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+             <form action="{{ route('turma.store') }}"  method="POST" class="row g-3">
+                @csrf
+                <div>
+                <x-label for="name" value="{{ __('Nome') }}" />
+                <x-input id="name" class="block mt-1 w-full" type="text" name="nome"  required autofocus autocomplete="nome" />
+              </div>
+                <div class="col-md-4">
+                    <label for="inputState" class="form-label">Periodo</label>
+                    <select id="inputState" class="form-select" name="periodo">
+                    <option value="Regular" selected>Selecionar</option>
+                    <option value="Regular">Regular</option>
+                    <option value="Pós laboral">Pós laboral</option>
+                    
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="inputState" class="form-label">Classe</label>
+                    <select id="inputState" class="form-select" name="classe">
+                    <option value="1º ano" selected>Selecionar</option>
+                    <option value="1º ano">1º ano</option>
+                    <option value="2º ano">2º ano</option>
+                    <option value="3º ano">3º ano</option>
+                    <option value="4º ano">2º ano</option>
+                    <option value="5º ano">2º ano</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </form>
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+    <!--Fim Modal fim inserir-->
+
 
             <div id="layoutSidenav_content">
                 <main>
                 
                     <div class="container-fluid px-4">
-                        SIIP-turmas
+                        <table class="table table-hover caption-top">
+                                <caption> <h2 style="font-family: 'Courier New', Courier, monospace; font-size: x-large; color: black;">SIIP-Turmas</h2></caption>
+                                <thead>
+                                    <th>ID</th>
+                                    <th>DESCRIÇÃO</th>
+                                    <th>CLASSE</th>
+                                    <th>PERIODO</th>
+                                    <th>DATA</th>
+                                    <th>METODO</th>
+                                </thead>
+                                <TBody>
+                            @foreach($turmas as $turma)
+                                    <TR>
+                                        <TD>{{$turma->id}}</TD>
+                                        <td>{{$turma->nome}}</td>
+                                        <td>{{$turma->classe}}</td>
+                                        <td>{{$turma->periodo}}</td>
+                                        <td>{{$turma->created_at}}</td>
+                                        <td>
+                                        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#apagar{{$turma->id}}"><i class="bi bi-trash3-fill"></i></button>
+                                        <!--Inicio Modal apagar-->
+<div class="modal fade" id="apagar{{$turma->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: green;">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Deletando {{$turma->nome}}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+             <form action="{{ route('turma.destroy',$turma->id) }}"  method="DELETE" class="row g-3" style="background-color: black;">
+                @csrf
+                
+                    <h3 style="color: red;">Deseja Ilimimar {{$turma->name}} ?</h3>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-danger"><i class="bi bi-trash3-fill"></i></button>
+                </div>
+            </form>
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+                                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#apagar"><i class="bi bi-pencil-square"></i></button>
+                                    </div>
+                                        </td>
+                                    </TR>
+                            @endforeach
+                                </TBody>
+                            </table>
                     </div>
                 </main>
 

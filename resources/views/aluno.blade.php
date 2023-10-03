@@ -12,6 +12,14 @@
                                      data-bs-toggle="modal" data-bs-target="#Inscrição">Registo
                                </button>
                         </a>
+                        <a class="nav-link" href="#">
+                                <div class="sb-nav-link-icon"><i class="bi bi-person-fill-check"></i></div>
+                                Matriculas
+                            </a>
+                            <a class="nav-link" href="#">
+                                <div class="sb-nav-link-icon"><i class="bi bi-person-dash-fill"></i></div>
+                                Faltas
+                            </a>
   
                         </div>
                     </div>
@@ -110,7 +118,8 @@
   </div>
 </div>
     <!--Fim Modal fim inserir-->
-<table class="table table-hover">
+<table class="table table-hover caption-top">
+        <caption> <h2 style="font-family: 'Courier New', Courier, monospace; font-size: x-large; color: black;">SIIP-Alunos</h2></caption>
     <thead>
         <TH>FOTO</TH>
          <th>ID</th>
@@ -133,50 +142,76 @@
             <TD>{{$aluno->telefone}}</TD>
             <TD>
             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#apagar"><i class="bi bi-trash3-fill"></i></button>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#apagar"><i class="bi bi-eye-fill"></i></button>
-   <!--Inicio Modal inserir aluno-->
-   <div class="modal fade" id="Inscrição" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#apagar{{$aluno->id}}"><i class="bi bi-trash3-fill"></i></button>
+                    <!--Inicio Modal apagar-->
+<div class="modal fade" id="apagar{{$aluno->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header" style="background-color: green;">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Formulario de inscrição</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Deletando {{$aluno->nome}}</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         
-             <form action="{{ route('aluno.store') }}"  method="POST" class="row g-3"enctype="multipart/form-data">
+             <form action="{{ route('aluno.destroy',$aluno->id) }}"  method="DELETE" class="row g-3" style="background-color: black;">
+                @csrf
+                
+                    <h3 style="color: red;">Deseja Ilimimar {{$aluno->name}} ?</h3>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-danger"><i class="bi bi-trash3-fill"></i></button>
+                </div>
+            </form>
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detalhes{{$aluno->id}}"><i class="bi bi-eye-fill"></i></button>
+   <!--Inicio Modal ver aluno-->
+   <div class="modal fade" id="detalhes{{$aluno->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: green;">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Dados sobre {{$aluno->nome}}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+             <form action=""  method="POST" class="row g-3"enctype="multipart/form-data">
                 @csrf
                 <div>
-                <x-label for="name" value="{{ __('Nome') }}" />
-                <x-input id="name" class="block mt-1 w-full" type="text" name="nome" :value="old('nome')" required autofocus autocomplete="nome" />
+                <img src="/assets/arquivos/{{$aluno->foto}}" alt="" style="border-radius: 30px; width: 60px; height: 60px; margin: auto; box-shadow: 2px 2px 10px black;">
+                <x-input id="name" class="block mt-1 w-full" type="text" name="nome" value="{{$aluno->nome}}" required autofocus autocomplete="nome" />
               </div>
               <div class="mt-4">
                 <x-label for="email" value="{{ __('Pai') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="text" name="pai" :value="old('pai')" required  />
+                <x-input id="email" class="block mt-1 w-full" type="text" name="pai" value="{{$aluno->pai}}" required  />
             </div>
             <div class="mt-4">
                 <x-label for="email" value="{{ __('Mãe') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="text" name="mae" :value="old('mae')" required  />
+                <x-input id="email" class="block mt-1 w-full" type="text" name="mae" value="{{$aluno->mae}}" required  />
             </div>
 
             <div class="mt-4">
                 <x-label for="email" value="{{ __('Data Nascimento') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="date" name="data_nascimento" :value="old('data_nascimento')" required />
+                <x-input id="email" class="block mt-1 w-full" type="date" name="data_nascimento" value="{{$aluno->data_nascimento}}" required />
             </div>
             <div class="mt-4">
                 <x-label for="email" value="{{ __('Idade') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="numeric" name="idade" :value="old('idade')" required  />
+                <x-input id="email" class="block mt-1 w-full" type="numeric" name="idade" value="{{$aluno->idade}}" required  />
             </div>
 
             <div class="mt-4">
                 <x-label for="password" value="{{ __('Naturalidade') }}" />
-                <x-input id="password" class="block mt-1 w-full" type="text" name="naturalidade" required autocomplete="Angola" />
+                <x-input id="password" class="block mt-1 w-full" type="text" name="naturalidade" value="{{$aluno->naturalidade}}"  />
             </div>
 
             <div class="mt-4">
                 <x-label for="password_confirmation" value="{{ __('Provincia') }}" />
-                <x-input id="password_confirmation" class="block mt-1 w-full" type="text" name="provincia" required autocomplete="Benguela" />
+                <x-input id="password_confirmation" class="block mt-1 w-full" type="text" name="provincia" value="{{$aluno->provincia}}" />
             </div>
             <div class="mt-4">
                 <x-label for="password_confirmation" value="{{ __('Municipio') }}" />
@@ -199,10 +234,6 @@
                     
                     </select>
                 </div>
-                <div class="mb-3">
-                <label for="formFileSm" class="form-label">Carregar foto</label>
-                <input class="form-control form-control-sm" id="formFileSm" type="file" name="foto">
-               </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
                 </div>
