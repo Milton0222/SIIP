@@ -234,6 +234,7 @@
                     
                     </select>
                 </div>
+                
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
                 </div>
@@ -246,7 +247,74 @@
 </div>
     <!--Fim Modal ver-->
 
-                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#apagar"><i class="bi bi-pencil-square"></i></button>
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#matricula{{$aluno->id}}"><i class="bi bi-person-fill-check"></i></button>
+<!--Inicio Modal matricula-->
+<div class="modal fade" id="matricula{{$aluno->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: green;">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Formulario para confirmar matricula</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+             <form action="{{ route('matricula.store',$aluno->id) }}"  method="POST" class="row g-3" >
+                @csrf
+                    <div class="mt-4" style="padding-left: 40%; background-color: whitesmoke;">
+                    <x-label for="email" value="{{$aluno->nome}}" />
+                    <x-label for="email" value="{{$aluno->naturalidade}}" />
+                    <x-label for="email" value="{{$aluno->pai}}" />
+                    <x-label for="email" value="{{$aluno->mae}}" />
+                    <x-label for="email" value="{{$aluno->telefone}}" />
+                    </div>
+
+            <div class="mt-4">
+                <x-label for="email" value="{{ __('Ano Lectivo') }}" />
+                <x-input id="email" class="block mt-1 w-full" type="text" name="anoLetivo" :value="old('anoLecttivo')" required />
+            </div>
+            <div class="mt-4">
+                <x-label for="email" value="{{ __('Data da confirmação') }}" />
+                <x-input id="email" class="block mt-1 w-full" type="date" name="data" :value="old('anoLecttivo')" required />
+            </div>
+            <div class="col-md-4">
+                    <label for="inputState" class="form-label">Aluno</label>
+                    <select id="inputState" class="form-select" name="aluno">
+                    <option value="{{$aluno->id}}" selected>{{$aluno->nome}}</option>
+                    </select>
+            </div>
+                <div class="col-md-4">
+                    <label for="inputState" class="form-label">Curso</label>
+                    <select id="inputState" class="form-select" name="curso">
+                    <option value="" selected>Selecionar</option>
+                    @foreach($cursos as $curso)
+                    <option value="{{$curso->id}}">{{$curso->nome}}</option>
+                    @endforeach
+                    </select>
+                </div>     
+                <div class="col-md-4">
+                    <label for="inputState" class="form-label">Turma</label>
+                    <select id="inputState" class="form-select" name="turma">
+                    <option value="" selected>Selecionar</option>
+                    @foreach($turmas as $turma)
+                    <option value="{{$turma->id}}">{{$turma->nome}} - {{$turma->classe}}- {{$turma->periodo}}</option>
+                    @endforeach
+                    </select>
+                </div>   
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </form>
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+    <!--Fim Modal matricula-->
+    <form action="{{route('matricula.imprimir',$aluno->id)}}" ><button type="submit" class="btn btn-primary"><i class="bi bi-printer-fill"></i></button></form>
+
             </div>
         </TD>
         </TR>

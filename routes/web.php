@@ -27,6 +27,8 @@ Route::get('/post', Post::class);
 Route::get('/alunos/show',[alunoController::class, 'index'])->name('aluno.index')->middleware('auth');
 Route::post('/aluno/store',[alunoController::class , 'store'])->name('aluno.store');
 Route::get('/aluno/apagar{id}',[alunoController::class , 'destroy'])->name('aluno.destroy');
+Route::post('/aluno/matricula{id}',[alunoController::class, 'matricular'])->name('matricula.store');
+Route::get('/aluno/imprimir{id}',[alunoController::class, 'imprimirConfirmacao'])->name('matricula.imprimir');
 
 Route::get('/pauta/show',[pautaConttroller::class, 'index'])->name('pauta.index');
 Route::post('/pauta/store',[pautaConttroller::class, 'store'])->name('pauta.store');

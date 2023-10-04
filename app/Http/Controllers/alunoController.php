@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\aluno;
+use App\Models\curso;
+use App\Models\{matricula,turma};
+use Illuminate\Support\Facades\DB;
 
 class alunoController extends Controller
 {
@@ -15,15 +18,34 @@ class alunoController extends Controller
         //ver alunos na view
 
         $alunos=aluno::get();
-        return view('aluno',compact('alunos'));
+        $turmas=turma::get();
+        $cursos=curso::get();
+        return view('aluno',compact('alunos','turmas','cursos'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function matricular(Request $request, string $id)
     {
-        //
+        //confirmar matricula
+        if($alunos=aluno::findorfail($id)){
+           matricula::create($request->all());
+            return redirect()->back();
+        }else{
+            return redirect()->back();
+        }
+    }
+    public function imprimirConfirmacao(string $id){
+
+       $sql="SELECT matriculas.id, matriculas.anoLetivo,matriculas.data, turmas.classe as classe, turmas.periodo,cursos.nome as curso
+       FROM matriculas JOIN cursos on(matriculas.curso=cursos.id) JOIN turmas on(matriculas.turma=turmas.id) JOIN alunos on(matriculas.aluno=alunos.id)
+       where matriculas.aluno=$id";
+
+       $fichaMatricula=DB::select($sql);
+       dd($fichaMatricula);
+
+       return view('comprovativo', compact('fichaMatricula'));
     }
 
     /**
