@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\{pauta,aluno,disciplina,turma};
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class pautaConttroller extends Controller
 {
@@ -22,6 +23,7 @@ class pautaConttroller extends Controller
         $alunos=aluno::get();
         $turmas=turma::get();
         $disciplinas=disciplina::get();
+        Alert::toast('Carregando dados','Sucesso');
         return view('pauta',compact('pautas','disciplinas','alunos','turmas'));
     }
 

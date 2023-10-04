@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -16,6 +17,7 @@ class funcionariosController extends Controller
     {
         //pegar funcionarios
         $funcionarios=User::where('nivel',2)->get();
+        Alert::toast('Carregando dados','Sucesso');
         return view('funcionarios', compact('funcionarios'));
     }
 

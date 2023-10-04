@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\disciplina;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class disciplinaController extends Controller
 {
@@ -15,6 +16,7 @@ class disciplinaController extends Controller
         //vizulizar dados
 
         $disciplinas=disciplina::get();
+        Alert::toast('Carregando dados','Sucesso');
         return view('disciplina', compact('disciplinas'));
     }
 

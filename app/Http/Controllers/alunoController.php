@@ -7,6 +7,8 @@ use App\Models\aluno;
 use App\Models\curso;
 use App\Models\{matricula,turma};
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
+use Dompdf\Adapter\PDFLib;
 
 class alunoController extends Controller
 {
@@ -20,6 +22,7 @@ class alunoController extends Controller
         $alunos=aluno::get();
         $turmas=turma::get();
         $cursos=curso::get();
+        Alert::toast('Carregando dados','Sucesso');
         return view('aluno',compact('alunos','turmas','cursos'));
     }
 
@@ -38,14 +41,14 @@ class alunoController extends Controller
     }
     public function imprimirConfirmacao(string $id){
 
-       $sql="SELECT matriculas.id, matriculas.anoLetivo,matriculas.data, turmas.classe as classe, turmas.periodo,cursos.nome as curso
+       $sql="SELECT matriculas.id, alunos.nome as aluno, matriculas.anoLetivo,matriculas.data, turmas.classe as classe, turmas.periodo,cursos.nome as curso
        FROM matriculas JOIN cursos on(matriculas.curso=cursos.id) JOIN turmas on(matriculas.turma=turmas.id) JOIN alunos on(matriculas.aluno=alunos.id)
        where matriculas.aluno=$id";
 
        $fichaMatricula=DB::select($sql);
-       dd($fichaMatricula);
-
-       return view('comprovativo', compact('fichaMatricula'));
+       
+            Alert()->success('Processando Ficha','sucesso');
+       return \PDF::loadview('comprovativo',compact('fichaMatricula'))->setPaper('a4')->stream();
     }
 
     /**

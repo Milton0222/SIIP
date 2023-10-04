@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\turma;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 use function PHPUnit\Framework\returnSelf;
 
@@ -16,6 +17,8 @@ class turmaController extends Controller
     {
         //vizualizar
         $turmas=turma::get();
+
+        Alert::toast('Carregando dados','Sucesso');
         return view('turma',compact('turmas'));
     }
 
