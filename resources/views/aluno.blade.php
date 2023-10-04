@@ -35,7 +35,7 @@
                 
                     <div class="container-fluid px-4">
                         
-                    <!--Inicio Modal inserir aluno-->
+<!--Inicio Modal inserir aluno-->
 <div class="modal fade" id="Inscrição" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">

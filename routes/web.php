@@ -29,6 +29,8 @@ Route::post('/aluno/store',[alunoController::class , 'store'])->name('aluno.stor
 Route::get('/aluno/apagar{id}',[alunoController::class , 'destroy'])->name('aluno.destroy');
 
 Route::get('/pauta/show',[pautaConttroller::class, 'index'])->name('pauta.index');
+Route::post('/pauta/store',[pautaConttroller::class, 'store'])->name('pauta.store');
+Route::get('/pauta/destroy{id}',[pautaConttroller::class,'destroy'])->name('pauta.destroy');
 
 Route::get('/turma/show',[turmaController::class, 'index'])->name('turma.index');
 Route::post('/turma/store',[turmaController::class, 'store'])->name('turma.store');

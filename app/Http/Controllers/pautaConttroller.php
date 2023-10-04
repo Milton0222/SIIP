@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\{pauta,aluno,disciplina,turma};
+use Illuminate\Support\Facades\DB;
 
 class pautaConttroller extends Controller
 {
@@ -11,8 +13,16 @@ class pautaConttroller extends Controller
      */
     public function index()
     {
-        //
-        return view('pauta');
+        //vizualizando pauta
+
+      $sql="SELECT alunos.id,pautas.id as code , alunos.nome as aluno, alunos.genero,disciplinas.nome as disciplina, disciplinas.tipo,turmas.nome as turma,turmas.classe, turmas.periodo,pautas.valor,pautas.classificacao
+      FROM  alunos JOIN pautas on(pautas.aluno=alunos.id) JOIN disciplinas on(pautas.disciplina=disciplinas.id) JOIN turmas on(pautas.turma=turmas.id)";  
+
+        $pautas=DB::select($sql);
+        $alunos=aluno::get();
+        $turmas=turma::get();
+        $disciplinas=disciplina::get();
+        return view('pauta',compact('pautas','disciplinas','alunos','turmas'));
     }
 
     /**
@@ -28,7 +38,28 @@ class pautaConttroller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //elaborar pauta
+
+        if($request->valor >=10){
+
+            pauta::create([
+                'valor'=>$request->valor,
+                'classificacao'=>'Aprovado',
+                'disciplina'=>$request->disciplina,
+                'aluno'=>$request->aluno,
+                'turma'=>$request->turma
+            ]);
+            return redirect()->back();
+        }else{
+            pauta::create([
+                'valor'=>$request->valor,
+                'classificacao'=>'Reprovado',
+                'disciplina'=>$request->disciplina,
+                'aluno'=>$request->aluno,
+                'turma'=>$request->turma
+            ]);
+            return redirect()->back();
+        }
     }
 
     /**
@@ -60,6 +91,13 @@ class pautaConttroller extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        //iliminar pauta de um ddeterminado aluno e disciplina
+
+        if($pautas=pauta::findorfail($id)){
+            $pautas->delete();
+            return redirect()->back();
+        }else{
+            return redirect()->back();
+        }
     }
 }
