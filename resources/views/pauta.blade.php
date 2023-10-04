@@ -6,32 +6,14 @@
                     <div class="sb-sidenav-menu" style="background-color: gainsboro;">
                         <div class="nav ">
 
-                            <a class="nav-link" href="{{route('funcionario.index')}}" style="background-color: green; margin-top: 10px; border-radius: 50px; text-align:justify;">
-                                <div class="sb-nav-link-icon"><i class="bi bi-person-plus-fill"></i></div>
-                                Funcionarios
-                            </a>
+                        <a class="nav-link" >
+                                <div class="sb-nav-link-icon"><i class="bi bi-person-fill-add"></i></div>
+                                <button type="button"  class="btn" style="color: white;"
+                                     data-bs-toggle="modal" data-bs-target="#Inscrição">Registo
+                               </button>
+                        </a>
 
-                            <a class="nav-link" href="{{route('aluno.index')}}">
-                                <div class="sb-nav-link-icon"><i class="bi bi-person-vcard"></i></div>
-                                Alunos
-                            </a>
-                            
-                            <a class="nav-link" href="{{route('turma.index')}}">
-                                <div class="sb-nav-link-icon"><i class="bi bi-pip-fill"></i></div>
-                                Turmas
-                            </a>
-                            <a class="nav-link" href="{{route('disciplina.index')}}">
-                                <div class="sb-nav-link-icon"><i class="bi bi-card-checklist"></i></div>
-                                Disciplinas
-                            </a>
-                            <a class="nav-link" href="{{route('pauta.index')}}">
-                                <div class="sb-nav-link-icon"><i class="bi bi-table"></i></div>
-                                Pautas
-                            </a>
-                            
                            
-                           
-
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
@@ -46,7 +28,7 @@
                 
                     <div class="container-fluid px-4">
                     <table class="table table-hover caption-top">
-                                <caption> <h2 style="font-family: 'Courier New', Courier, monospace; font-size: x-large; color: black;">SIIP-Informações</h2></caption>
+                                <caption> <h2 style="font-family: 'Courier New', Courier, monospace; font-size: x-large; color: black;">SIIP-Pautas</h2></caption>
                                 <thead>
 
                                 </thead>

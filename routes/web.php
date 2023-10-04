@@ -3,6 +3,7 @@
 use App\Http\Controllers\alunoController;
 use App\Http\Controllers\disciplinaController;
 use App\Http\Controllers\funcionariosController;
+use App\Http\Controllers\pautaConttroller;
 use App\Http\Controllers\turmaController;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Post;
@@ -26,6 +27,8 @@ Route::get('/post', Post::class);
 Route::get('/alunos/show',[alunoController::class, 'index'])->name('aluno.index')->middleware('auth');
 Route::post('/aluno/store',[alunoController::class , 'store'])->name('aluno.store');
 Route::get('/aluno/apagar{id}',[alunoController::class , 'destroy'])->name('aluno.destroy');
+
+Route::get('/pauta/show',[pautaConttroller::class, 'index'])->name('pauta.index');
 
 Route::get('/turma/show',[turmaController::class, 'index'])->name('turma.index');
 Route::post('/turma/store',[turmaController::class, 'store'])->name('turma.store');
