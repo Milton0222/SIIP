@@ -41,6 +41,13 @@
                                 Alunos
                             </a>
 @endcan
+@can('professor')
+                            <a class="nav-link" href="{{route('pauta.index')}}">
+                                <div class="sb-nav-link-icon"><i class="bi bi-table"></i></div>
+                                Pautas
+                            </a>
+
+@endcan
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">

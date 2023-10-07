@@ -51,6 +51,7 @@ class pautaConttroller extends Controller
                 'aluno'=>$request->aluno,
                 'turma'=>$request->turma
             ]);
+            Alert::success('Elaborar Pauta','sucesso');
             return redirect()->back();
         }else{
             pauta::create([
@@ -60,6 +61,7 @@ class pautaConttroller extends Controller
                 'aluno'=>$request->aluno,
                 'turma'=>$request->turma
             ]);
+            Alert::success('Elaborar Pauta','sucesso');
             return redirect()->back();
         }
     }
@@ -97,8 +99,10 @@ class pautaConttroller extends Controller
 
         if($pautas=pauta::findorfail($id)){
             $pautas->delete();
+            Alert::success('Apagando Pauta','sucesso');
             return redirect()->back();
         }else{
+            Alert::error('Apagando Pauta','Erro');
             return redirect()->back();
         }
     }

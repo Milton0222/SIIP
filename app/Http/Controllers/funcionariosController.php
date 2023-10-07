@@ -51,7 +51,7 @@ class funcionariosController extends Controller
             'password'=>Hash::make($request->password),
             'nivel'=>$request->nivel])->givePermissionTo('professor');
         }
-       
+        Alert::success('Criar conta de funcionario','sucesso');
         return redirect()->back();
     }
 
@@ -87,8 +87,10 @@ class funcionariosController extends Controller
         //
         if($funcionario=User::findorfail($id)){
             $funcionario->delete();
+            Alert::success('Apagando Funcionario','sucesso');
             return redirect()->back();
         }else{
+            Alert::error('Apagando Funcionario','Erro');
             return redirect()->back();
         }
     }

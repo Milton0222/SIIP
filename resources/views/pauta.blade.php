@@ -114,7 +114,9 @@
                                         <td>{{$pauta->classificacao}}</td>
                                         <td>
                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                    @can('RSA')
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#apagar{{$pauta->id}}"><i class="bi bi-trash3-fill"></i></button>
+                    @endcan
                     <!--Inicio Modal apagar-->
                             <div class="modal fade" id="apagar{{$pauta->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">

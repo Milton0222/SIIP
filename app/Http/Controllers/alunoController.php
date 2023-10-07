@@ -76,7 +76,7 @@ class alunoController extends Controller
             return view('consulta', compact('pautas'));
         }else{
             Alert::error('Procurando Dados','dados não enccontrado');
-            return view('consulta', compact('pautas'));
+            return redirect()->back();
         }
    
     }
@@ -108,9 +108,11 @@ class alunoController extends Controller
                 'idade'=>$request->idade,
                 'naturalidade'=>$request->naturalidade
             ]);
+            Alert::success('Inscrevendo aluno','sucesso');
             return redirect()->back();
 
         }else{
+            Alert::errror('Inscrevendo aluno','erro!');
             return redirect()->back();
         }
        
@@ -150,8 +152,10 @@ class alunoController extends Controller
        if($alunos=aluno::findorfail($id)){
         unlink('assets/arquivos/'.$alunos->foto);
           $alunos->delete();
+          Alert::success('Apagando aluno','sucesso');
         return redirect()->back();
        }else{
+        Alert::success('Apagando aluno','Erro');
         return redirect()->back();
        }
         

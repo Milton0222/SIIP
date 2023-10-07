@@ -99,7 +99,9 @@
                                     <td>{{$lista->email}}</td>
                                     <td>
                                     <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                        @can('RSA')
                                         <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#apagar{{$lista->id}}"><i class="bi bi-trash3-fill"></i></button>
+                                        @endcan
                                 
 <!--Inicio Modal-->
 <div class="modal fade" id="apagar{{$lista->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

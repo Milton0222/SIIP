@@ -40,7 +40,7 @@ class disciplinaController extends Controller
             'nome'=>$request->nome,
             'tipo'=>$request->tipo
         ]);
-
+        Alert::success('Registar Disciplina','sucesso');
         return redirect()->back();
     }
 
@@ -77,8 +77,10 @@ class disciplinaController extends Controller
 
         if($disciplinas=disciplina::findorfail($id)){
             $disciplinas->delete();
+            Alert::success('Apagando Disciplina','sucesso');
             return redirect()->back();
         }else{
+            Alert::error('Apagando Disciplina','Erro');
             return redirect()->back();
         }
     }

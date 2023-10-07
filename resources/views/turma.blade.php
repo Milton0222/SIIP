@@ -96,7 +96,9 @@
                                         <td>{{$turma->created_at}}</td>
                                         <td>
                                         <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                            @can('RSA')
                                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#apagar{{$turma->id}}"><i class="bi bi-trash3-fill"></i></button>
+                                       @endcan
                                         <!--Inicio Modal apagar-->
 <div class="modal fade" id="apagar{{$turma->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">

@@ -7,6 +7,7 @@
                         <div class="nav ">
 
 
+                        @can("RSA")
                             <a class="nav-link" href="{{route('funcionario.index')}}" style="background-color: green; margin-top: 10px; border-radius: 50px; text-align:justify;">
                                 <div class="sb-nav-link-icon"><i class="bi bi-person-plus-fill"></i></div>
                                 Funcionarios
@@ -35,7 +36,19 @@
                                 Faltosos
                             </a>
                            
+@elsecan("FSA")
+                            <a class="nav-link" href="{{route('aluno.index')}}">
+                                <div class="sb-nav-link-icon"><i class="bi bi-person-vcard"></i></div>
+                                Alunos
+                            </a>
+@endcan
+@can('professor')
+                            <a class="nav-link" href="{{route('pauta.index')}}">
+                                <div class="sb-nav-link-icon"><i class="bi bi-table"></i></div>
+                                Pautas
+                            </a>
 
+@endcan
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">

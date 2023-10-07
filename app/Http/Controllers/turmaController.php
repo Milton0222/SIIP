@@ -39,6 +39,7 @@ class turmaController extends Controller
 
         turma::create($request
         ->all());
+        Alert::success('Criar Turma','sucesso');
         return redirect()->back();
     }
 
@@ -74,8 +75,11 @@ class turmaController extends Controller
         //apagando turma
         if($turmas=turma::findorfail($id)){
             $turmas->delete();
+
+            Alert::success('Apagando Turma','sucesso');
             return redirect()->back();
         }else{
+            Alert::eror('Apagando Turma','Erro');
             return redirect()->back();
         }
     }

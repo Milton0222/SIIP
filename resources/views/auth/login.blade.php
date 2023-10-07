@@ -42,6 +42,11 @@
                 @endif
 
                 <x-button class="ml-4">
+                    <a href="{{route('register')}}">
+                    {{ __('Criar conta') }}
+                    </a>
+                </x-button>
+                <x-button class="ml-4">
                     {{ __('Entrar') }}
                 </x-button>
             </div>
