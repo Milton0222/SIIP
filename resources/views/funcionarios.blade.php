@@ -62,6 +62,16 @@
                     <option value="2">Funcionario</option>
                     </select>
                 </div>
+                <div class="col-md-4">
+                    <label for="inputState" class="form-label">Nivel de Acesso</label>
+                    <select id="inputState" class="form-select" name="caso">
+                    <option value="2" selected>Privilegios</option>
+                    <option value="0">Chefe de Secretaria</option>
+                    <option value="1">Funcionario de secretaria</option>
+                    <option value="2">Professor</option>
+                    
+                    </select>
+                </div>
                 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
@@ -87,7 +97,9 @@
                                     <td>{{$lista->id}}</td>
                                     <td>{{$lista->name}}</td>
                                     <td>{{$lista->email}}</td>
-                                    <td><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#apagar{{$lista->id}}"><i class="bi bi-trash3-fill"></i></button>
+                                    <td>
+                                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#apagar{{$lista->id}}"><i class="bi bi-trash3-fill"></i></button>
                                 
 <!--Inicio Modal-->
 <div class="modal fade" id="apagar{{$lista->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -115,7 +127,54 @@
     </div>
   </div>
 </div>
-                                </td>
+                <!--bottom actualizar
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#actualizar{{$lista->id}}"><i class="bi bi-person-fill-check"></i></button>
+nicio Modal actualizar
+<div class="modal fade" id="actualizar{{$lista->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: green;">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Cadastro de Funcionarios</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+             <form action="{{ route('funcionario.update',$lista->id) }}"  method="PUT" class="row g-3">
+                @csrf
+                <div>
+                <x-label for="name" value="{{ __('Nome') }}" />
+                <x-input id="name" class="block mt-1 w-full" type="text" name="name" value="{{$lista->name}}" required autofocus autocomplete="name" />
+            </div>
+
+            <div class="mt-4">
+                <x-label for="email" value="{{ __('Email') }}" />
+                <x-input id="email" class="block mt-1 w-full" type="email" name="email" value="{{$lista->email}}" required autocomplete="username" />
+            </div>
+                <div class="col-md-4">
+                    <label for="inputState" class="form-label">Nivel de Acesso</label>
+                    <select id="inputState" class="form-select" name="caso">
+                    <option value="2" selected>Privilegios</option>
+                    <option value="0">Chefe de Secretaria</option>
+                    <option value="1">Funcionario de secretaria</option>
+                    
+                    </select>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </form>
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+    Fim Modal actualizar-->       
+
+                </div>                  
+</td>
                                 </tr>
                                 @endforeach
                             </tbody>

@@ -6,7 +6,7 @@
                     <div class="sb-sidenav-menu" style="background-color: gainsboro;">
                         <div class="nav ">
 
-    @can("RSA")
+
                             <a class="nav-link" href="{{route('funcionario.index')}}" style="background-color: green; margin-top: 10px; border-radius: 50px; text-align:justify;">
                                 <div class="sb-nav-link-icon"><i class="bi bi-person-plus-fill"></i></div>
                                 Funcionarios
@@ -35,12 +35,7 @@
                                 Faltosos
                             </a>
                            
-@elsecan("FSA")
-                            <a class="nav-link" href="{{route('aluno.index')}}">
-                                <div class="sb-nav-link-icon"><i class="bi bi-person-vcard"></i></div>
-                                Alunos
-                            </a>
-@endcan
+
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
@@ -56,19 +51,26 @@
                     <div class="container-fluid px-4">
                         
                     <table class="table table-hover caption-top">
-                                <caption> <h2 style="font-family: 'Courier New', Courier, monospace; font-size: x-large; color: black;">SIIP-SISTEMA DE INFORMAÇÃO DO INSTITUTO POLITÉCNICO KATYAVALA BWILA</h2></caption>
+                                <caption> <h2 style="font-family: 'Courier New', Courier, monospace; font-size: x-large; color: black;">SIIP-Informações</h2></caption>
                                 <thead>
-                                   
+                                   <th>ID</th>
+                                   <TH>ALUNO</TH>
+                                   <TH>DISCIPLINA</TH>
+                                   <TH>NOTA</TH>
+                                   <TH>ESTADO</TH>
                                 </thead>   
                                 <tbody>
-                                   
+                                    @foreach($pautas as $pauta)
+                                    <tr>
+                                        <td>{{$pauta->id}} </td>
+                                        <td>{{$pauta->nome}} </td>
+                                        <td>{{$pauta->disciplina}} </td>
+                                        <td>{{$pauta->valor}} </td>
+                                        <td>{{$pauta->classificacao}} </td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
                     </table>
-
-                    <div style="padding:150px; padding-left: 400px; border-radius: 30%; box-shadow: 2px 2px 20px black;">
-                       
-                        <img src="{{asset('imagens/ip.jpg')}}" alt="INSTITUTO POLITECNICO" width="200px" style="border-radius: 100px; box-shadow: 1px 1px  10px green;">
-                    </div>
                     </div>
                 </main>
 

@@ -35,12 +35,23 @@ class funcionariosController extends Controller
     public function store(Request $request)
     {
         //
-
-        User::create(['name'=>$request->name,
-        'email'=>$request->email,
-        'password'=>Hash::make($request->password),
-        'nivel'=>$request->nivel]);
-
+        if($request->caso==0){
+            User::create(['name'=>$request->name,
+            'email'=>$request->email,
+            'password'=>Hash::make($request->password),
+            'nivel'=>$request->nivel])->givePermissionTo('RSA');
+        } if($request->caso==1){
+            User::create(['name'=>$request->name,
+            'email'=>$request->email,
+            'password'=>Hash::make($request->password),
+            'nivel'=>$request->nivel])->givePermissionTo('FSA');
+        }if($request->caso==2){
+            User::create(['name'=>$request->name,
+            'email'=>$request->email,
+            'password'=>Hash::make($request->password),
+            'nivel'=>$request->nivel])->givePermissionTo('professor');
+        }
+       
         return redirect()->back();
     }
 
@@ -65,7 +76,7 @@ class funcionariosController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        
     }
 
     /**

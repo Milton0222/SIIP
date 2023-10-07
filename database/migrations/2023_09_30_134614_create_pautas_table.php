@@ -12,12 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pautas', function (Blueprint $table) {
-            $table->id();
             $table->decimal('valor', 10, 2, true);
             $table->string('classificacao');
             $table->unsignedBigInteger('aluno');
             $table->foreign('aluno')->references('id')->on('alunos')
-                ->constrained()
+                ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->unsignedBigInteger('disciplina');
             $table->foreign('disciplina')->references('id')->on('disciplinas')
@@ -26,6 +25,7 @@ return new class extends Migration
             $table->unsignedBigInteger('turma');
             $table->foreign('turma')->references('id')->on('turmas')
                 ->onUpdate('cascade');
+            $table->primary('aluno','disciplina');
             $table->timestamps();
         });
     }

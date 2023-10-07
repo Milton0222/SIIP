@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\aluno;
 use App\Models\curso;
-use App\Models\{matricula,turma};
+use App\Models\{matricula,turma,falta};
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 use Dompdf\Adapter\PDFLib;
@@ -24,6 +24,21 @@ class alunoController extends Controller
         $cursos=curso::get();
         Alert::toast('Carregando dados','Sucesso');
         return view('aluno',compact('alunos','turmas','cursos'));
+    }
+    public function falta(Request $request){
+        falta::create($request->all());
+
+        $sql="SELECT alunos.id, alunos.nome,alunos.genero, faltas.qtdFaltas,faltas.data
+        FROM alunos JOIN faltas on(alunos.id=faltas.aluno)";
+            $faltas=DB::select($sql);
+        return view('falta',compact('faltas'));
+    }
+    public function listarF(){
+        $sql="SELECT alunos.id, alunos.nome,alunos.genero, faltas.qtdFaltas,faltas.data
+        FROM alunos JOIN faltas on(alunos.id=faltas.aluno)";
+            $faltas=DB::select($sql);
+        Alert::toast('Carregaando dados','sucesso.');
+        return view('falta',compact('faltas'));
     }
 
     /**
@@ -47,8 +62,23 @@ class alunoController extends Controller
 
        $fichaMatricula=DB::select($sql);
        
-            Alert()->success('Processando Ficha','sucesso');
+            Alert::success('Processando Ficha','sucesso');
        return \PDF::loadview('comprovativo',compact('fichaMatricula'))->setPaper('a4')->stream();
+    }
+    public function consultarPauta(Request $request){
+
+        $sql="SELECT alunos.id,alunos.nome,disciplinas.nome as 'disciplina', pautas.valor, pautas.classificacao
+        FROM alunos JOIN pautas on(alunos.id=pautas.aluno) JOIN disciplinas on(disciplinas.id=pautas.disciplina)
+        WHERE alunos.telefone=$request->contacto or alunos.id=$request->matricula";
+
+        if($pautas=DB::select($sql)){
+            Alert::success('Procurando Dados','sucesso');
+            return view('consulta', compact('pautas'));
+        }else{
+            Alert::error('Procurando Dados','dados não enccontrado');
+            return view('consulta', compact('pautas'));
+        }
+   
     }
 
     /**

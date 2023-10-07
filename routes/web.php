@@ -20,8 +20,8 @@ use App\Livewire\Post;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-})->name('/');
+    return view('dashboard');
+})->name('/')->middleware(['auth']);
 Route::get('/post', Post::class);
 
 Route::get('/alunos/show',[alunoController::class, 'index'])->name('aluno.index')->middleware('auth');
@@ -29,6 +29,9 @@ Route::post('/aluno/store',[alunoController::class , 'store'])->name('aluno.stor
 Route::get('/aluno/apagar{id}',[alunoController::class , 'destroy'])->name('aluno.destroy');
 Route::post('/aluno/matricula{id}',[alunoController::class, 'matricular'])->name('matricula.store');
 Route::get('/aluno/imprimir{id}',[alunoController::class, 'imprimirConfirmacao'])->name('matricula.imprimir');
+Route::post('/aluno/falta',[alunoController::class, 'falta'])->name('falta.store');
+Route::get('/aluno/falta/show',[alunoController::class, 'listarF'])->name('falta.listar');
+Route::post('/aluno/pauta/show',[alunoController::class, 'consultarPauta'])->name('consultar.pauta');
 
 Route::get('/pauta/show',[pautaConttroller::class, 'index'])->name('pauta.index');
 Route::post('/pauta/store',[pautaConttroller::class, 'store'])->name('pauta.store');
@@ -45,6 +48,7 @@ Route::get('/disciplina/apagar{id}', [disciplinaController::class, 'destroy'])->
 Route::get('/funcionario/shhow', [funcionariosController::class ,'index'])->name('funcionario.index')->middleware(['auth']);
 Route::post('/funcionario/Salvar',[funcionariosController::class ,'store'])->name('funcionario.store');
 Route::get('/funcionario/Iliminar{id}',[funcionariosController::class ,'destroy'])->name('funcionario.destroy');
+Route::get('/funcionario/actualizar{id}',[funcionariosController::class ,'update'])->name('funcionario.update');
 
 Route::middleware([
     'auth:sanctum',

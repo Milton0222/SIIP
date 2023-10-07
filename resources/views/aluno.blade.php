@@ -12,13 +12,11 @@
                                      data-bs-toggle="modal" data-bs-target="#Inscrição">Registo
                                </button>
                         </a>
-                        <a class="nav-link" href="#">
-                                <div class="sb-nav-link-icon"><i class="bi bi-person-fill-check"></i></div>
-                                Matriculas
-                            </a>
                             <a class="nav-link" href="#">
                                 <div class="sb-nav-link-icon"><i class="bi bi-person-dash-fill"></i></div>
-                                Faltas
+                                <button type="button"  class="btn" style="color: white;"
+                                     data-bs-toggle="modal" data-bs-target="#faltas">Falta
+                               </button>
                             </a>
   
                         </div>
@@ -28,6 +26,51 @@
                     </div>
                 </nav>
             </div>
+
+<!--Inicio Modal falta-->
+<div class="modal fade" id="faltas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: green;">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Formulario Para atribuir falta</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+             <form action="{{ route('falta.store') }}"  method="POST" class="row g-3" >
+                @csrf
+            
+
+            <div class="mt-4">
+                <x-label for="email" value="{{ __('DATA') }}" />
+                <x-input id="email" class="block mt-1 w-full" type="date" name="data" :value="old('data')" required />
+            </div>
+            <div class="mt-4">
+                <x-label for="email" value="{{ __('QUANTIDADE') }}" />
+                <x-input id="email" class="block mt-1 w-full" type="numeric" name="qtdFaltas" :value="old('qtdFaltas')" required />
+            </div>
+            <div class="col-md-4">
+                    <label for="inputState" class="form-label">Aluno</label>
+                    <select id="inputState" class="form-select" name="aluno">
+                    <option value="" selected>Selecionar</option>
+                    @foreach($alunos as $aluno)
+                    <option value="{{$aluno->id}}">{{$aluno->nome}}-{{$aluno->id}}</option>
+                    @endforeach
+                    </select>
+            </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </form>
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+    <!--Fim Modal falta-->
 
 
             <div id="layoutSidenav_content">

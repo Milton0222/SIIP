@@ -30,6 +30,7 @@
             <td>{{$ficha->classe}}</td>
             <td>{{$ficha->periodo}}</td>
         </TR>
+        
     @endforeach
     </TBody>
 </body>
