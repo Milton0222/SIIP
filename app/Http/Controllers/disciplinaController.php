@@ -66,6 +66,14 @@ class disciplinaController extends Controller
     public function update(Request $request, string $id)
     {
         //
+
+        if($disciplinas=disciplina::findorfail($id)){
+            $disciplinas->update($request->all());
+            return redirect()->back();
+        }else{
+            return redirect()->back();
+
+        }
     }
 
     /**

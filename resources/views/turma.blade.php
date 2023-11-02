@@ -54,8 +54,8 @@
                     <option value="1º ano">1º ano</option>
                     <option value="2º ano">2º ano</option>
                     <option value="3º ano">3º ano</option>
-                    <option value="4º ano">2º ano</option>
-                    <option value="5º ano">2º ano</option>
+                    <option value="4º ano">4º ano</option>
+                    <option value="5º ano">5º ano</option>
                     </select>
                 </div>
                 <div class="modal-footer">
@@ -125,7 +125,58 @@
     </div>
   </div>
 </div>
-                                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#apagar"><i class="bi bi-pencil-square"></i></button>
+                                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#actualizar{{$turma->id}}"><i class="bi bi-pencil-square"></i></button>
+
+                                        <!--Inicio Modal inserir turma-->
+<div class="modal fade" id="actualizar{{$turma->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: green;">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Formulario de inscrição</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+             <form action="{{ route('turma.update', $turma->id) }}"  method="PUT" class="row g-3">
+                @csrf
+                <div>
+                <x-label for="name" value="{{ __('Nome') }}" />
+                <x-input id="name" class="block mt-1 w-full" type="text" name="nome"  required autofocus autocomplete="nome"  value="{{$turma->nome}}" />
+              </div>
+                <div class="col-md-4">
+                    <label for="inputState" class="form-label">Periodo</label>
+                    <select id="inputState" class="form-select" name="periodo">
+                    <option value="{{$turma->periodo}}" selected>{{$turma->periodo}}</option>
+                    <option value="Regular">Regular</option>
+                    <option value="Pós laboral">Pós laboral</option>
+                    
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="inputState" class="form-label">Classe</label>
+                    <select id="inputState" class="form-select" name="classe">
+                    <option value="{{$turma->classe}}" selected>{{$turma->classe}}</option>
+                    <option value="1º ano">1º ano</option>
+                    <option value="2º ano">2º ano</option>
+                    <option value="3º ano">3º ano</option>
+                    <option value="4º ano">4º ano</option>
+                    <option value="5º ano">5º ano</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </form>
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+    <!--Fim Modal fim inserir-->
+
+
                                     </div>
                                         </td>
                                     </TR>

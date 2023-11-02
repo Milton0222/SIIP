@@ -65,6 +65,11 @@ class turmaController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        if($turmas=turma::findorfail($id)){
+            $turmas->update($request->all());
+            return redirect()->back();}
+            else
+            return redirect()->back();
     }
 
     /**

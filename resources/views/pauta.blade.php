@@ -98,7 +98,7 @@
                                         <TH>PERIODO</TH>
                                         <TH>VALOR</TH>
                                         <TH>ESTADO</TH>
-                                        <TH>MEDOTO</TH>
+                                        <!--<TH>MEDOTO</TH>-->
                                 </thead>
                                 <tbody>
                                     @foreach($pautas as $pauta)
@@ -112,12 +112,12 @@
                                         <td>{{$pauta->periodo}}</td>
                                         <td>{{$pauta->valor}}</td>
                                         <td>{{$pauta->classificacao}}</td>
-                                        <td>
+                                      <!--  <td>
                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                     @can('RSA')
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#apagar{{$pauta->id}}"><i class="bi bi-trash3-fill"></i></button>
                     @endcan
-                    <!--Inicio Modal apagar-->
+                    Inicio Modal apagar
                             <div class="modal fade" id="apagar{{$pauta->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -146,7 +146,7 @@
 
                                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#apagar"><i class="bi bi-pencil-square"></i></button>
                  </div>
-                                        </td>
+                                        </td>-->
 
                                     </tr>
                                     @endforeach

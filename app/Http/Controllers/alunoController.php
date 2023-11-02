@@ -140,6 +140,12 @@ class alunoController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        if($alunos=aluno::findorfail($id)){
+            $alunos->update($request->all());
+            return redirect()->back();
+        }else{
+            return redirect()->back();
+        }
     }
 
     /**

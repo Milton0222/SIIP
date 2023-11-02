@@ -23,7 +23,7 @@
                 </nav>
             </div>
 
- <!--Inicio Modal inserir aluno-->
+ <!--Inicio Modal inserir disciplina-->
  <div class="modal fade" id="Inscrição" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -59,11 +59,6 @@
   </div>
 </div>
     <!--Fim Modal fim inserir-->
-
-
-
-
-
 
 
 
@@ -116,7 +111,45 @@
     </div>
   </div>
 </div>
-                                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#apagar"><i class="bi bi-pencil-square"></i></button>
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#actualizar{{$disciplina->id}}"><i class="bi bi-pencil-square"></i></button>
+<!--Inicio Modal inserir disciplina-->
+<div class="modal fade" id="actualizar{{$disciplina->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: green;">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Formulario actualizar`{{$disciplina->nome}} </h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+             <form action="{{ route('disciplina.update',$disciplina->id) }}"  method="PUT" class="row g-3">
+                @csrf
+                <div>
+                <x-label for="name" value="{{ __('Nome') }}" />
+                <x-input id="name" class="block mt-1 w-full" type="text" name="nome"  required autofocus autocomplete="nome" value="{{$disciplina->nome}}" />
+              </div>
+                <div class="col-md-4">
+                    <label for="inputState" class="form-label">Tipo</label>
+                    <select id="inputState" class="form-select" name="tipo">
+                    <option value="{{$disciplina->tipo}}" selected>{{$disciplina->tipo}}</option>
+                    <option value="nuclear">nuclear</option>
+                    <option value="não nuclear">não nuclearr</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </form>
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+    <!--Fim Modal fim actualizar-->
+
+
                                     </div>
                                     </TD>
                                 </TR>

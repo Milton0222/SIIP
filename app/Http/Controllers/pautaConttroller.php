@@ -16,7 +16,7 @@ class pautaConttroller extends Controller
     {
         //vizualizando pauta
 
-      $sql="SELECT alunos.id, alunos.nome as aluno, alunos.genero,disciplinas.nome as disciplina, disciplinas.tipo,turmas.nome as turma,turmas.classe, turmas.periodo,pautas.valor,pautas.classificacao
+      $sql="SELECT alunos.id, pautas.aluno as 'code',alunos.nome as aluno, alunos.genero,disciplinas.nome as disciplina, disciplinas.tipo,turmas.nome as turma,turmas.classe, turmas.periodo,pautas.valor,pautas.classificacao
       FROM  alunos JOIN pautas on(pautas.aluno=alunos.id) JOIN disciplinas on(pautas.disciplina=disciplinas.id) JOIN turmas on(pautas.turma=turmas.id)";  
 
         $pautas=DB::select($sql);
@@ -96,8 +96,8 @@ class pautaConttroller extends Controller
     public function destroy(string $id)
     {
         //iliminar pauta de um ddeterminado aluno e disciplina
-
-        if($pautas=pauta::findorfail($id)){
+              
+        if($pautas=pauta::find($id)){
             $pautas->delete();
             Alert::success('Apagando Pauta','sucesso');
             return redirect()->back();

@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pautas', function (Blueprint $table) {
+            
             $table->decimal('valor', 10, 2, true);
             $table->string('classificacao');
             $table->unsignedBigInteger('aluno');
