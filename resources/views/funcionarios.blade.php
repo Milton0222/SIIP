@@ -45,7 +45,7 @@
                 <x-label for="email" value="{{ __('Email') }}" />
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
             </div>
-
+<!--
             <div class="mt-4">
                 <x-label for="password" value="{{ __('Senha') }}" />
                 <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
@@ -54,7 +54,7 @@
             <div class="mt-4">
                 <x-label for="password_confirmation" value="{{ __('Confirmar senha') }}" />
                 <x-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
-            </div>
+            </div>-->
                 <div class="col-md-4">
                     <label for="inputState" class="form-label">Funcionario</label>
                     <select id="inputState" class="form-select" name="nivel">

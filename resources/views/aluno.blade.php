@@ -53,7 +53,7 @@
                     <label for="inputState" class="form-label">Aluno</label>
                     <select id="inputState" class="form-select" name="aluno">
                     <option value="" selected>Selecionar</option>
-                    @foreach($alunos as $aluno)
+                    @foreach($alunosM as $aluno)
                     <option value="{{$aluno->id}}">{{$aluno->nome}}-{{$aluno->id}}</option>
                     @endforeach
                     </select>
@@ -175,8 +175,9 @@
     </thead>
     <TBOdy>
         @foreach($alunos as $aluno)
+        
         <TR>
-            <TD><img src="/assets/arquivos/{{$aluno->foto}}" alt="foto" style="box-shadow: 0px 0px 10px black; border-radius: 30px; width: 70px; height: 70px;" ></TD>
+            <TD> <a class=nav-link href="{{route('aluno.historico',$aluno->id)}}"><img src="/assets/arquivos/{{$aluno->foto}}" alt="foto" style="box-shadow: 0px 0px 10px black; border-radius: 30px; width: 70px; height: 70px;" ></a></TD>
             <TD>{{$aluno->id}}</TD>
             <TD>{{$aluno->nome}}</TD>
             <TD>{{$aluno->genero}}</TD>

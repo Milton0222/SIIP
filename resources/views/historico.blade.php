@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ config('app.name', 'Comprovativo') }}</title>
+    <title>{{ config('app.name', 'Historial Académico') }}</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{asset('assetes/faturacao.css')}}">
@@ -21,64 +21,60 @@
    </div>
    
    <hr>
-   @foreach($fichaMatricula as $ficha)
+   @foreach($aluno as $ficha)
                 <div class="cabecalho2">
                     <div class="cliente">
-                        <h1>Dados da matricula</h1>
+                        <h1>Dados Pessoais</h1>
                    
                             @php 
                                $codigo=$ficha->id;
                                
                             @endphp
                                
-                                <p>Nome: {{$ficha->aluno}}</p>
-                                <p>Curso: {{$ficha->curso}}</p>
-                                
-                                <p>Frequência: {{$ficha->classe}}</p>
-                                <p>Periodo: {{$ficha->periodo}}</p>
-    
-        
-                            
-                       
+                                <p>Nome: {{$ficha->nome}}</p>
+                                <p>Data de Nascimento: {{$ficha->data_nascimento}}</p>
+                                <p>Genero: {{$ficha->geenero}}</p>
+                                <p>Natural de: {{$ficha->naturalidade}}</p>
+                                <p>Provincia de: {{$ficha->provincia}}</p>
+                                <p>Municipio de: {{$ficha->municipio}}</p>
+                                <p>Nome Pai: {{$ficha->pai}}</p>
+                                <p>Nome mãe: {{$ficha->mae}}</p>
+
                     </div>
+                    @endforeach
+                    @foreach($dadosAcademico as $lista)
                     <div class="sobre-fatura">
-                        <h1>Recibo<span>Original</span></h1>
-                        <p>Nº : {{$codigo}}</p>
-                        <P>Data: {{$ficha->data}}</P>
-                        <p>Ano Lectivo: {{$ficha->anoLetivo}}</p>
+                        <h1><span>Dados Académicos</span></h1>
+                        <p>Curso : {{$lista->curso}}</p
+                        <p>Núm Matricula : {{$lista->id}}</p>
+                        <P>Ano de Maatricula: {{$lista->ano}}</P>
+                        <p>Periodo: {{$lista->periodo}}</p>
                     </div>
                 </div>
                 @endforeach
+                
     <br>
     <table class="table" >
-        <p class="acumulo">Dados pessoal<span>Estudante</span></p>  
+        <p class="acumulo">classificacão<span>Estudante</span></p>  
   <thead >
 
       
     
   <tr class="custom-th">
-      <th scope="col" >Codigo</th>
-      <th scope="col">Nome</th>  
-      <th scope="col">Pai</th>
-      <th scope="col">Mae</th>
-      <th scope="col">Genero</th>
-      <th scope="col">Naturalidade</th>
-      <th scope="col">Provincia</th>
-      <th scope="col">Contacto</th>
-
+      <th scope="col" >Unidade Curricular</th>
+      <th scope="col">Tipo Exame</th>  
+      <th scope="col">Nota</th>
+      <th scope="col">Observação</th>
   </tr>
   </thead>
   <tbody class="table-group-divider">
     @foreach($inscrito as $lista)
   <tr  class="custom-th">
-      <th scope="row">{{$lista->id}}</th>
-      <td>{{$lista->nome}}</td>
-      <td>{{$lista->pai}}</td>
-      <td>{{$lista->mae}}</td>
-      <td>{{$lista->genero}}</td>
-      <td>{{$lista->naturalidade}}</td>
-      <td>{{$lista->provincia}}</td>
-      <td>{{$lista->telefone}}</td>
+      <th scope="row">{{$lista->nome}}</th>
+      <td>...</td>
+      <td>{{$lista->valor}}</td>
+      <td>{{$lista->classificacao}}</td>
+     
   </tr>
   @endforeach
   </tbody>
@@ -89,8 +85,9 @@
                                                
                                                    <!--funcionario -->
                                                 <div class="funcionario">
+                                                <p>O DECANO</p>
                                                     <p>____________________________</p>
-                                                   <p>funcionário</p>
+                                                   
                                                 </div>
                                 
                                                 

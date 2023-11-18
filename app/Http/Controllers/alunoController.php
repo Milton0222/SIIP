@@ -18,12 +18,13 @@ class alunoController extends Controller
     public function index()
     {
         //ver alunos na view
-
+        $sql1="SELECT *FROM alunos JOIN matriculas on(alunos.id=matriculas.aluno)";
         $alunos=aluno::get();
+        $alunosM=DB::select($sql1);
         $turmas=turma::get();
         $cursos=curso::get();
         Alert::toast('Carregando dados','Sucesso');
-        return view('aluno',compact('alunos','turmas','cursos'));
+        return view('aluno',compact('alunos','turmas','cursos','alunosM'));
     }
     public function falta(Request $request){
         falta::create($request->all());
@@ -31,13 +32,14 @@ class alunoController extends Controller
         $sql="SELECT alunos.id, alunos.nome,alunos.genero, faltas.qtdFaltas,faltas.data
         FROM alunos JOIN faltas on(alunos.id=faltas.aluno)";
             $faltas=DB::select($sql);
+
         return view('falta',compact('faltas'));
     }
     public function listarF(){
         $sql="SELECT alunos.id, alunos.nome,alunos.genero, faltas.qtdFaltas,faltas.data
         FROM alunos JOIN faltas on(alunos.id=faltas.aluno)";
             $faltas=DB::select($sql);
-        Alert::toast('Carregaando dados','sucesso.');
+        Alert::toast('Carregando dados','sucesso.');
         return view('falta',compact('faltas'));
     }
 
@@ -61,15 +63,17 @@ class alunoController extends Controller
        where matriculas.aluno=$id";
 
        $fichaMatricula=DB::select($sql);
+       $inscrito=aluno::where('id',$id)->get();
        
             Alert::success('Processando Ficha','sucesso');
-       return \PDF::loadview('comprovativo',compact('fichaMatricula'))->setPaper('a4')->stream();
+            
+       return view('comprovativo',compact('fichaMatricula','inscrito'));
     }
     public function consultarPauta(Request $request){
 
         $sql="SELECT alunos.id,alunos.nome,disciplinas.nome as 'disciplina', pautas.valor, pautas.classificacao
         FROM alunos JOIN pautas on(alunos.id=pautas.aluno) JOIN disciplinas on(disciplinas.id=pautas.disciplina)
-        WHERE alunos.telefone=$request->contacto or alunos.id=$request->matricula";
+        WHERE alunos.id=$request->matricula";
 
         if($pautas=DB::select($sql)){
             Alert::success('Procurando Dados','sucesso');
@@ -121,9 +125,22 @@ class alunoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function historicoAluno(string $id)
     {
         //
+      $sql="SELECT disciplinas.nome,pautas.valor, pautas.classificacao
+      FROM pautas JOIN disciplinas on(pautas.disciplina=disciplinas.id) JOIN alunos on(pautas.aluno=alunos.id)
+      WHERE alunos.id=$id";
+
+      $sql1="SELECT year(matriculas.created_at) as 'ano',cursos.nome as 'curso',turmas.periodo,matriculas.id 
+      FROM alunos JOIN matriculas on(matriculas.aluno=alunos.id) JOIN turmas on(turmas.id=matriculas.turma) JOIN cursos on(cursos.id=matriculas.curso)
+      WHERE alunos.id=$id";
+
+      $inscrito=DB::select($sql);
+      $dadosAcademico=DB::select($sql1);
+      $aluno=aluno::where("id",$id)->get();
+
+      return view('historico',compact('inscrito','aluno','dadosAcademico'));
     }
 
     /**

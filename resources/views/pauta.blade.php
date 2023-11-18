@@ -1,5 +1,38 @@
 <x-app-layout>
 
+<!--Inicio Modal elaborar pauta-->
+<div class="modal fade" id="elaborar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: green;">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Formulario para elaborar pauta</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+                <table class="table">
+                    <thead>
+                       <th>Selecionar curso</th>
+                    </thead>
+                    <tbody>
+                    @foreach($cursos  as $lista)
+                    <tr>
+                    <td><a class="nav-link" style="color: black;" href="/elaborar/pauta/{{$lista->id}}">{{$lista->nome}}</a></td>
+                    </tr>
+                        
+                        @endforeach
+                    </tbody>
+
+                </table>
+                
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+    <!--Fim Modal elaboral pauta-->
+
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
@@ -9,12 +42,67 @@
                         <a class="nav-link" >
                                 <div class="sb-nav-link-icon"><i class="bi bi-person-fill-add"></i></div>
                                 <button type="button"  class="btn" style="color: white;"
-                                     data-bs-toggle="modal" data-bs-target="#publicar">Registo
+                                     data-bs-toggle="modal" data-bs-target="#elaborar">Elaborar
                                </button>
                         </a>
-
-                           
+                    <!--pesquisar por curso e disciplina-->    
+            @can('RSA')
+                <div class="container-fluid">
+                        <form class="d-flex" role="search" action="{{route('pauta.search')}}" method="GET">
+                                            @csrf
+                  
+                    <select id="inputState" class="form-select" name="disciplina">
+                    <option value="" selected>Selecionar discplina</option>
+                    @foreach($disciplinas as $disciplina)
+                    <option value="{{$disciplina->id}}">{{$disciplina->nome}}</option>
+                    @endforeach
+                    </select>
+                
+                
+                    <select id="inputState" class="form-select" name="curso">
+                    <option value="" selected>Selecionar curso</option>
+                    @foreach($cursos as $lista)
+                    <option value="{{$lista->id}}">{{$lista->nome}}</option>
+                    @endforeach
+                    </select>  
+                                        <button class="btn btn-outline-success" type="submit">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                                </svg>
+                                        </button>
+                                        </form>
+             </div>
+             @elsecan('professor')
+             <div class="container-fluid">
+                        <form class="d-flex" role="search" action="{{route('pauta.search')}}" method="GET">
+                                            @csrf
+                  
+                    <select id="inputState" class="form-select" name="disciplina">
+                    <option value="" selected>Selecionar discplina</option>
+                    @foreach($disciplinas as $disciplina)
+                    <option value="{{$disciplina->id}}">{{$disciplina->nome}}</option>
+                    @endforeach
+                    </select>
+                
+                
+                    <select id="inputState" class="form-select" name="curso">
+                    <option value="" selected>Selecionar curso</option>
+                    @foreach($cursos as $lista)
+                    <option value="{{$lista->id}}">{{$lista->nome}}</option>
+                    @endforeach
+                    </select>  
+                                        <button class="btn btn-outline-success" type="submit">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                                </svg>
+                                        </button>
+                         
+                        </form>
+             </div>
+<!--pesquisar por curso e disciplina fim-->
+@endcan    
                         </div>
+                     
                     </div>
                     <div class="sb-sidenav-footer">
                     <h1 class="mt-4" style="text-align: center; color: rgb(216, 121, 126); box-shadow: 0px 0px 20px green; border-radius: 20px;">SIIP</h1>
@@ -22,74 +110,19 @@
                 </nav>
             </div>
 
-<!--Inicio Modal publicar pauta-->
-<div class="modal fade" id="publicar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header" style="background-color: green;">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Formulario para elaborar pauta</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        
-             <form action="{{ route('pauta.store') }}"  method="POST" class="row g-3" >
-                @csrf
-            
 
-            <div class="mt-4">
-                <x-label for="email" value="{{ __('Média') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="numeric" name="valor" :value="old('valor')" required />
-            </div>
-            <div class="col-md-4">
-                    <label for="inputState" class="form-label">Aluno</label>
-                    <select id="inputState" class="form-select" name="aluno">
-                    <option value="" selected>Selecionar</option>
-                    @foreach($alunos as $aluno)
-                    <option value="{{$aluno->id}}">{{$aluno->nome}}-{{$aluno->id}}</option>
-                    @endforeach
-                    </select>
-            </div>
-                <div class="col-md-4">
-                    <label for="inputState" class="form-label">Disciplina</label>
-                    <select id="inputState" class="form-select" name="disciplina">
-                    <option value="" selected>Selecionar</option>
-                    @foreach($disciplinas as $disciplina)
-                    <option value="{{$disciplina->id}}">{{$disciplina->nome}}</option>
-                    @endforeach
-                    </select>
-                </div>     
-                <div class="col-md-4">
-                    <label for="inputState" class="form-label">Turma</label>
-                    <select id="inputState" class="form-select" name="turma">
-                    <option value="" selected>Selecionar</option>
-                    @foreach($turmas as $turma)
-                    <option value="{{$turma->id}}">{{$turma->nome}} - {{$turma->classe}}- {{$turma->periodo}}</option>
-                    @endforeach
-                    </select>
-                </div>   
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                    <button type="submit" class="btn btn-primary">Salvar</button>
-                </div>
-            </form>
-
-      </div>
-      
-    </div>
-  </div>
-</div>
-    <!--Fim Modal fim publicar pauta-->
-
+           
 
             <div id="layoutSidenav_content">
                 <main>
+             
                 
                     <div class="container-fluid px-4">
                     <table class="table table-hover caption-top">
                                 <caption> <h2 style="font-family: 'Courier New', Courier, monospace; font-size: x-large; color: black;">SIIP-Pautas</h2></caption>
+                                
                                 <thead>
-                                        <th>ID</th>
+                                       
                                         <TH>NOME</TH>
                                         <TH>GENERO</TH>
                                         <th>DISCIPLINA</th>
@@ -103,7 +136,7 @@
                                 <tbody>
                                     @foreach($pautas as $pauta)
                                     <tr>
-                                        <td>{{$pauta->id}}</td>
+                                      
                                         <td>{{$pauta->aluno}}</td>
                                         <td>{{$pauta->genero}}</td>
                                         <td>{{$pauta->disciplina}}</td>

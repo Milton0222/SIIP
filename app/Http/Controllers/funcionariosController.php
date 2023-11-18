@@ -38,17 +38,17 @@ class funcionariosController extends Controller
         if($request->caso==0){
             User::create(['name'=>$request->name,
             'email'=>$request->email,
-            'password'=>Hash::make($request->password),
+            'password'=>Hash::make(123456789),
             'nivel'=>$request->nivel])->givePermissionTo('RSA');
         } if($request->caso==1){
             User::create(['name'=>$request->name,
             'email'=>$request->email,
-            'password'=>Hash::make($request->password),
+            'password'=>Hash::make(123456789),
             'nivel'=>$request->nivel])->givePermissionTo('FSA');
         }if($request->caso==2){
             User::create(['name'=>$request->name,
             'email'=>$request->email,
-            'password'=>Hash::make($request->password),
+            'password'=>Hash::make(123456789),
             'nivel'=>$request->nivel])->givePermissionTo('professor');
         }
         Alert::success('Criar conta de funcionario','sucesso');

@@ -31,12 +31,15 @@ Route::post('/aluno/matricula{id}',[alunoController::class, 'matricular'])->name
 Route::get('/aluno/imprimir{id}',[alunoController::class, 'imprimirConfirmacao'])->name('matricula.imprimir');
 Route::post('/aluno/falta',[alunoController::class, 'falta'])->name('falta.store');
 Route::get('/aluno/falta/show',[alunoController::class, 'listarF'])->name('falta.listar');
-Route::post('/aluno/pauta/show',[alunoController::class, 'consultarPauta'])->name('consultar.pauta');
+Route::get('/aluno/pauta/show',[alunoController::class, 'consultarPauta'])->name('consultar.pauta');
 Route::get('/aluno/actualizar/{id}',[alunoController::class, 'update'])->name('aluno.update');
+Route::get('/aluno/historico/{id}',[alunoController::class,'historicoAluno'])->name('aluno.historico');
 
 Route::get('/pauta/show',[pautaConttroller::class, 'index'])->name('pauta.index');
 Route::post('/pauta/store',[pautaConttroller::class, 'store'])->name('pauta.store');
 Route::get('/pauta/destroy{id}',[pautaConttroller::class,'destroy'])->name('pauta.destroy');
+Route::get('/elaborar/pauta/{id}',[pautaConttroller::class, 'elaborarPauta'])->name('pauta.elaborar');
+Route::get('/buscar/pauta',[pautaConttroller::class,'showPautaCurso'])->name('pauta.search');
 
 Route::get('/turma/show',[turmaController::class, 'index'])->name('turma.index');
 Route::post('/turma/store',[turmaController::class, 'store'])->name('turma.store');

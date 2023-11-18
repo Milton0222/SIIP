@@ -1,6 +1,6 @@
 <x-form-section submit="updateProfileInformation">
     <x-slot name="title">
-        {{ __('Profile Information') }}
+        {{ __('Informação de perfil') }}
     </x-slot>
 
     <x-slot name="description">
@@ -85,11 +85,11 @@
 
     <x-slot name="actions">
         <x-action-message class="mr-3" on="saved">
-            {{ __('Saved.') }}
+            {{ __('Savado.') }}
         </x-action-message>
 
         <x-button wire:loading.attr="disabled" wire:target="photo">
-            {{ __('Save') }}
+            {{ __('Salvar') }}
         </x-button>
     </x-slot>
 </x-form-section>
