@@ -33,7 +33,7 @@
                                
                                 <p>Nome: {{$ficha->nome}}</p>
                                 <p>Data de Nascimento: {{$ficha->data_nascimento}}</p>
-                                <p>Genero: {{$ficha->geenero}}</p>
+                                <p>Genero: {{$ficha->genero}}</p>
                                 <p>Natural de: {{$ficha->naturalidade}}</p>
                                 <p>Provincia de: {{$ficha->provincia}}</p>
                                 <p>Municipio de: {{$ficha->municipio}}</p>
