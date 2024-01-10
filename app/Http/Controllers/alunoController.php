@@ -74,13 +74,14 @@ class alunoController extends Controller
         $sql="SELECT alunos.id,alunos.nome,disciplinas.nome as 'disciplina', pautas.valor, pautas.classificacao
         FROM alunos JOIN pautas on(alunos.id=pautas.aluno) JOIN disciplinas on(disciplinas.id=pautas.disciplina)
         WHERE alunos.id=$request->matricula";
+        $pautas=DB::select($sql);
 
-        if($pautas=DB::select($sql)){
+        if($pautas){
             Alert::success('Procurando Dados','sucesso');
             return view('consulta', compact('pautas'));
         }else{
             Alert::error('Procurando Dados','dados não enccontrado');
-            return redirect()->back();
+            return redirect()->route("/");
         }
    
     }

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('naturalidade');
             $table->string('provincia');
             $table->string('municipio');
-            $table->string('telefone');
+            $table->string('telefone')->unique();
             $table->date('data_nascimento');
             $table->unsignedBigInteger('usuario');
             $table->foreign('usuario')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
