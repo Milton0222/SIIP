@@ -18,12 +18,13 @@ class alunoController extends Controller
     public function index()
     {
         //ver alunos na view
-        $sql1="SELECT *FROM alunos JOIN matriculas on(alunos.id=matriculas.aluno)";
+        $sql1="SELECT alunos.id, alunos.nome FROM alunos JOIN matriculas on(alunos.id=matriculas.aluno)";
         $alunos=aluno::get();
         $alunosM=DB::select($sql1);
         $turmas=turma::get();
         $cursos=curso::get();
         Alert::toast('Carregando dados','Sucesso');
+        //dd($alunosM);
         return view('aluno',compact('alunos','turmas','cursos','alunosM'));
     }
     public function falta(Request $request){
