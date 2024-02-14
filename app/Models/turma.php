@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class turma extends Model
 {
     use HasFactory;
-    protected $fillable=(['nome','periodo','classe']);
+    protected $fillable=(['nome','periodo','classe','quantidade']);
 }

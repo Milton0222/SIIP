@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nome');
             $table->enum('tipo',['nuclear','não nuclear'])->default('não nuclear');
+            $table->enum('classe',['1º ano','2º ano','3º ano','4º ano','5º ano']);
             $table->timestamps();
         });
     }

@@ -16,7 +16,11 @@ return new class extends Migration
             $table->string('nome');
             $table->string('pai');
             $table->string('mae');
+            $table->string('identidade',14);
+            $table->string('morada',50);
             $table->enum('genero',['F','M']);
+            $table->enum('lingua',['Inglesh','Frances']);
+            $table->string('nacionalidade')->default('Angolana');
             $table->string('foto');
             $table->string('naturalidade');
             $table->string('provincia');

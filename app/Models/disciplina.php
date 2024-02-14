@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class disciplina extends Model
 {
     use HasFactory;
-    protected $fillable=(['nome','tipo']);
+    protected $fillable=(['nome','tipo','classe']);
 }

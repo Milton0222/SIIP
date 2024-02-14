@@ -34,10 +34,14 @@
         
              <form action="{{ route('turma.store') }}"  method="POST" class="row g-3">
                 @csrf
-                <div>
-                <x-label for="name" value="{{ __('Nome') }}" />
-                <x-input id="name" class="block mt-1 w-full" type="text" name="nome"  required autofocus autocomplete="nome" />
-              </div>
+                  <div>
+                    <x-label for="name" value="{{ __('Nome') }}" />
+                    <x-input id="name" class="block mt-1 w-full" type="text" name="nome"  required autofocus autocomplete="nome" />
+                  </div>
+                  <div>
+                    <x-label for="name" value="{{ __('Quantidade') }}" />
+                    <x-input id="name" class="block mt-1 w-full" type="text" name="quantidade"  required autofocus autocomplete="quantidade" />
+                  </div>
                 <div class="col-md-4">
                     <label for="inputState" class="form-label">Periodo</label>
                     <select id="inputState" class="form-select" name="periodo">
@@ -83,6 +87,7 @@
                                     <th>DESCRIÇÃO</th>
                                     <th>CLASSE</th>
                                     <th>PERIODO</th>
+                                    <th>CAPACIDADE</th>
                                     <th>DATA</th>
                                     <th>METODO</th>
                                 </thead>
@@ -93,6 +98,7 @@
                                         <td>{{$turma->nome}}</td>
                                         <td>{{$turma->classe}}</td>
                                         <td>{{$turma->periodo}}</td>
+                                        <td>{{$turma->quantidade}}</td>
                                         <td>{{$turma->created_at}}</td>
                                         <td>
                                         <div class="btn-group" role="group" aria-label="Basic mixed styles example">
@@ -142,6 +148,10 @@
                 <div>
                 <x-label for="name" value="{{ __('Nome') }}" />
                 <x-input id="name" class="block mt-1 w-full" type="text" name="nome"  required autofocus autocomplete="nome"  value="{{$turma->nome}}" />
+              </div>
+              <div>
+                <x-label for="name" value="{{ __('Quantidade') }}" />
+                <x-input id="name" class="block mt-1 w-full" type="text" name="quantidade"  required autofocus autocomplete="quantidade"  value="{{$turma->quantidade}}" />
               </div>
                 <div class="col-md-4">
                     <label for="inputState" class="form-label">Periodo</label>

@@ -93,7 +93,9 @@ class alunoController extends Controller
     public function store(Request $request)
     {
         //metodo inserir aluno
-       
+         
+        $dataActual=date('y');
+      
         if($request->foto !=null){
 
             $extensao=$request->foto->extension();
@@ -108,11 +110,15 @@ class alunoController extends Controller
                 'telefone'=>$request->telefone,
                 'provincia'=>$request->provincia,
                 'municipio'=>$request->municipio,
+                'morada'=>$request->morada,
                 'usuario'=>$request->usuario,
                 'genero'=>$request->genero,
                 'foto'=>$nomeFoto,
                 'idade'=>$request->idade,
-                'naturalidade'=>$request->naturalidade
+                'naturalidade'=>$request->naturalidade,
+                'identidade'=>$request->identidade,
+                'lingua'=>$request->lingua,
+                'nacionalidade'=>$request->nacionalidade
             ]);
             Alert::success('Inscrevendo aluno','sucesso');
             return redirect()->back();

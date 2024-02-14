@@ -9,8 +9,14 @@
                         <a class="nav-link" >
                                 <div class="sb-nav-link-icon"><i class="bi bi-person-fill-add"></i></div>
                                 <button type="button"  class="btn" style="color: white;"
-                                     data-bs-toggle="modal" data-bs-target="#Inscrição">Registo
+                                     data-bs-toggle="modal" data-bs-target="#Inscrição">Matricular
                                </button>
+                        </a>
+                        <a href="" target="_blank" rel="noopener noreferrer" class="nav-link">
+                              <button  type="button" class="btn" style="color: white;">
+                                Confirmados
+                              </button>
+
                         </a>
                             <a class="nav-link" href="#">
                                 <div class="sb-nav-link-icon"><i class="bi bi-person-dash-fill"></i></div>
@@ -83,7 +89,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header" style="background-color: green;">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Formulario de inscrição</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Ficha de matricula</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -93,6 +99,10 @@
                 <div>
                 <x-label for="name" value="{{ __('Nome') }}" />
                 <x-input id="name" class="block mt-1 w-full" type="text" name="nome" :value="old('nome')" required autofocus autocomplete="nome" />
+              </div>
+              <div>
+                <x-label for="name" value="{{ __('Nº de identidade') }}" />
+                <x-input id="name" class="block mt-1 w-full" type="text" max='14' min='14' name="identidade" :value="old('nome')" required autofocus autocomplete="nome" />
               </div>
               <div class="mt-4">
                 <x-label for="email" value="{{ __('Pai') }}" />
@@ -116,6 +126,10 @@
                 <x-label for="password" value="{{ __('Naturalidade') }}" />
                 <x-input id="password" class="block mt-1 w-full" type="text" name="naturalidade" required autocomplete="Angola" />
             </div>
+            <div class="mt-4">
+                <x-label for="password" value="{{ __('Nacionalidade') }}" />
+                <x-input id="password" class="block mt-1 w-full" type="text" name="nacionalidade" required autocomplete="Angola" />
+            </div>
 
             <div class="mt-4">
                 <x-label for="password_confirmation" value="{{ __('Provincia') }}" />
@@ -124,6 +138,10 @@
             <div class="mt-4">
                 <x-label for="password_confirmation" value="{{ __('Municipio') }}" />
                 <x-input id="password_confirmation" class="block mt-1 w-full" type="text" name="municipio" required autocomplete="Benguela" />
+            </div>
+            <div class="mt-4">
+                <x-label for="password_confirmation" value="{{ __('Morada') }}" />
+                <x-input id="password_confirmation" class="block mt-1 w-full" type="text" name="morada" required autocomplete="Benguela" />
             </div>
             <div class="mt-4">
                 <x-label for="password_confirmation" value="{{ __('Telefone') }}" />
@@ -135,6 +153,14 @@
                     <option value="M" selected>Selecionar</option>
                     <option value="F">Femenino</option>
                     <option value="M">Masculino</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="inputState" class="form-label">Lingua de Opção</label>
+                    <select id="inputState" class="form-select" name="lingua">
+                    <option value="Inglesh" selected>Selecionar</option>
+                    <option value="Inglesh">Inglesh</option>
+                    <option value="Frances">Frances</option>
                     </select>
                 </div>
                 <div class="col-md-4">

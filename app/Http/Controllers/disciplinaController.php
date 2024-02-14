@@ -38,7 +38,8 @@ class disciplinaController extends Controller
 
         disciplina::create([
             'nome'=>$request->nome,
-            'tipo'=>$request->tipo
+            'tipo'=>$request->tipo,
+            'classe'=>$request->classe
         ]);
         Alert::success('Registar Disciplina','sucesso');
         return redirect()->back();

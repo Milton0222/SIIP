@@ -47,6 +47,17 @@
                     <option value="não nuclear">não nuclearr</option>
                     </select>
                 </div>
+                <div class="col-md-4">
+                    <label for="inputState" class="form-label">Classe</label>
+                    <select id="inputState" class="form-select" name="classe">
+                    <option  selected>Selecionar</option>
+                    <option value="1º ano">1º ano</option>
+                    <option value="2º ano">2º ano</option>
+                    <option value="3º ano">3º ano</option>
+                    <option value="4º ano">4º ano</option>
+                    <option value="5º ano">5º ano</option>
+                    </select>
+                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
                     <button type="submit" class="btn btn-primary">Salvar</button>
@@ -67,11 +78,12 @@
                 
                     <div class="container-fluid px-4">
                     <table class="table table-hover caption-top">
-                            <caption> <h2 style="font-family: 'Courier New', Courier, monospace; font-size: x-large; color: black;">SIIP-Funcionarios</h2></caption>
+                            <caption> <h2 style="font-family: 'Courier New', Courier, monospace; font-size: x-large; color: black;">SIIP-Disciplinas</h2></caption>
                              <thead>
                                 <th>ID</th>
                                 <th>DESCRIÇÃO</th>
                                 <th>TIPO</th>
+                                <th>Classe</th>
                                 <th>METODO</th>
                              </thead>
                              <TBODy>
@@ -80,6 +92,7 @@
                                     <td>{{$disciplina->id}}</td>
                                     <td>{{$disciplina->nome}}</td>
                                     <td>{{$disciplina->tipo}}</td>
+                                    <td>{{$disciplina->classe}}</td>
                                     <TD>
                                     <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                                     @can('RSA')

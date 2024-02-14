@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nome');
             $table->enum('periodo',['Regular','Pós laboral']);
             $table->enum('classe',['1º ano','2º ano','3º ano','4º ano','5º ano']);
+            $table->Integer('quantidade');
             $table->timestamps();
         });
     }
