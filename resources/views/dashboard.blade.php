@@ -9,42 +9,53 @@
     @can("RSA")
                             <a class="nav-link" href="{{route('funcionario.index')}}" style="background-color: green; margin-top: 10px; border-radius: 50px; text-align:justify;">
                                 <div class="sb-nav-link-icon"><i class="bi bi-person-plus-fill"></i></div>
-                                Funcionarios
+                               Gerir Funcionarios
                             </a>
 
                             <a class="nav-link" href="{{route('aluno.index')}}">
                                 <div class="sb-nav-link-icon"><i class="bi bi-person-vcard"></i></div>
-                                Alunos
+                                Gerir Alunos
                             </a>
                             
                             <a class="nav-link" href="{{route('turma.index')}}">
                                 <div class="sb-nav-link-icon"><i class="bi bi-pip-fill"></i></div>
-                                Turmas
+                               Gerir Turmas
                             </a>
                             <a class="nav-link" href="{{route('disciplina.index')}}">
                                 <div class="sb-nav-link-icon"><i class="bi bi-card-checklist"></i></div>
-                                Disciplinas
+                               Gerir Disciplinas
                             </a>
                             <a class="nav-link" href="{{route('pauta.index')}}">
                                 <div class="sb-nav-link-icon"><i class="bi bi-table"></i></div>
-                                Pautas
+                               Gerir Pautas
                             </a>
                             
                             <a class="nav-link" href="{{route('falta.listar')}}">
                                 <div class="sb-nav-link-icon"><i class="bi bi-table"></i></div>
-                                Faltosos
+                                Gerir Faltas
+                            </a>
+                            <a class="nav-link" data-bs-toggle="modal" data-bs-target="#declaracao">
+                                <div class="sb-nav-link-icon"><i class="bi bi-table"></i></div>
+                               Requisitar Declaração
                             </a>
                            
 @elsecan("FSA")
                             <a class="nav-link" href="{{route('aluno.index')}}">
                                 <div class="sb-nav-link-icon"><i class="bi bi-person-vcard"></i></div>
-                                Alunos
+                                Gerir Alunos
                             </a>
 @endcan
 @can('professor')
                             <a class="nav-link" href="{{route('pauta.index')}}">
                                 <div class="sb-nav-link-icon"><i class="bi bi-table"></i></div>
-                                Pautas
+                               Gerir Pautas
+                            </a>
+
+@endcan
+@can('UW')
+                            <a class="nav-link" data-bs-toggle="modal" data-bs-target="#declaracao">
+                                <div class="sb-nav-link-icon"><i class="bi bi-table"></i></div>
+                               Requisitar Declaração
                             </a>
 
 @endcan
@@ -99,7 +110,37 @@
                 </footer>
             </div>
         </div>
+                                <!--Inicio Modal declaracao-->
+ <div class="modal fade" id="declaracao" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: green;">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Buscar dados do Estuddante.</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+             <form action=""  method="GET" class="row g-3">
+                @csrf
+              
+              <div>
+                <x-label for="name" value="{{ __('Nº de Identidade') }}" />
+                <x-input id="name" class="block mt-1 w-full" type="text" name="identidade"  required autofocus autocomplete="0000" placeholder="Informe seu numero do BI" />
+              </div>
+               
+               
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-primary">Buscar</button>
+                </div>
+            </form>
 
+      </div>
+      
+    </div>
+  </div>
+</div>
+    <!--Fim Modal fim inserir-->
 
    
 </x-app-layout>
