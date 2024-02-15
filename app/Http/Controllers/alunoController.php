@@ -27,6 +27,29 @@ class alunoController extends Controller
         //dd($alunosM);
         return view('aluno',compact('alunos','turmas','cursos','alunosM'));
     }
+    public function consultar(Request $request){
+
+        
+        $sql1="SELECT alunos.id, alunos.nome FROM alunos JOIN matriculas on(alunos.id=matriculas.aluno)
+        where alunos.identidade='$request->search' or alunos.id=$request->search";
+
+        $sql11="SELECT *FROM alunos
+        where alunos.identidade='$request->search' or alunos.id=$request->search";
+        $alunos=DB::select($sql11);
+        $alunosM=DB::select($sql1);
+        $turmas=turma::get();
+        $cursos=curso::get();
+
+        if($alunos)
+        Alert::toast('Carregando dados','Sucesso');
+        //dd($alunosM);
+        else{
+            Alert::error('Procurando Aluno','Dados não encontrado');
+        }
+        return view('aluno',compact('alunos','turmas','cursos','alunosM'));
+
+
+    }
     public function falta(Request $request){
         falta::create($request->all());
 
@@ -52,7 +75,7 @@ class alunoController extends Controller
         //confirmar matricula
         if($alunos=aluno::findorfail($id)){
            matricula::create($request->all());
-            return redirect()->back();
+            return redirect()->route('confirmado.index');
         }else{
             return redirect()->back();
         }

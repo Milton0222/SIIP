@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\turma;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\DB;
 
 use function PHPUnit\Framework\returnSelf;
 
@@ -46,9 +47,21 @@ class turmaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Request $request)
     {
         //
+
+
+        $sql="SELECT *FROM turmas
+        WHERE classe LIKE '%$request->search%';";
+
+
+            $turmas=DB::select($sql);
+            if($turmas)
+        Alert::toast('Carregando dados','Sucesso');
+      else
+        Alert::error('Procurando Turmas','não encontrado');
+        return view('turma',compact('turmas'));
     }
 
     /**

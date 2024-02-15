@@ -12,7 +12,7 @@
                                      data-bs-toggle="modal" data-bs-target="#Inscrição">Matricular
                                </button>
                         </a>
-                        <a href="" target="_blank" rel="noopener noreferrer" class="nav-link">
+                        <a href="{{route('confirmado.index')}}"  class="nav-link">
                               <button  type="button" class="btn" style="color: white;">
                                 Confirmados
                               </button>
@@ -188,7 +188,22 @@
 </div>
     <!--Fim Modal fim inserir-->
 <table class="table table-hover caption-top">
-        <caption> <h2 style="font-family: 'Courier New', Courier, monospace; font-size: x-large; color: black;">SIIP-Alunos</h2></caption>
+        <caption> <h2 style="font-family: 'Courier New', Courier, monospace; font-size: x-large; color: black;">SIIP-Alunos
+        <nav class="navbar bg-body-tertiary">
+                                    <div class="container-fluid">
+                                        <form class="d-flex" role="search" action="{{route('consultar.aluno')}}" method="GET">
+                                            @csrf
+                                        
+                                        <input class="form-control me-2" type="search" name="search"  placeholder="Campo  de pesquisa" aria-label="Search" require>
+                                        <button class="btn btn-outline-success" type="submit">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                                </svg>
+                                        </button>
+                                        </form>
+                                    </div>
+                                    </nav>
+    </h2></caption>
     <thead>
         <TH>FOTO</TH>
          <th>ID</th>
@@ -309,7 +324,7 @@
              <form action="{{ route('aluno.destroy',$aluno->id) }}"  method="DELETE" class="row g-3" style="background-color: black;">
                 @csrf
                 
-                    <h3 style="color: red;">Deseja Ilimimar {{$aluno->name}} ?</h3>
+                    <h3 style="color: red;">Deseja Ilimimar {{$aluno->nome}} ?</h3>
                 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
@@ -339,6 +354,10 @@
                 <img src="/assets/arquivos/{{$aluno->foto}}" alt="" style="border-radius: 30px; width: 60px; height: 60px; margin: auto; box-shadow: 2px 2px 10px black;">
                 <x-input id="name" class="block mt-1 w-full" type="text" name="nome" value="{{$aluno->nome}}" required autofocus autocomplete="nome" />
               </div>
+              <div class="mt-4">
+                <x-label for="email" value="{{ __('Nº de Identidade') }}" />
+                <x-input id="email" class="block mt-1 w-full" type="text" name="identidade" value="{{$aluno->identidade}}" required  />
+            </div>
               <div class="mt-4">
                 <x-label for="email" value="{{ __('Pai') }}" />
                 <x-input id="email" class="block mt-1 w-full" type="text" name="pai" value="{{$aluno->pai}}" required  />
@@ -378,6 +397,12 @@
                     <label for="inputState" class="form-label">Genero</label>
                     <select id="inputState" class="form-select" name="genero">
                     <option value="{{$aluno->genero}}" selected>{{$aluno->genero}}</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="inputState" class="form-label">Lingua Estrangeira</label>
+                    <select id="inputState" class="form-select" name="lingual">
+                    <option value="{{$aluno->lingua}}" selected>{{$aluno->lingua}}</option>
                     </select>
                 </div>
                 <div class="col-md-4">

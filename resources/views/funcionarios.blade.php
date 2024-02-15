@@ -87,9 +87,29 @@
     <!--Fim Modal-->            
                     <div class="container-fluid px-4">
                        <table class="table table-hover caption-top">
-                       <caption> <h2 style="font-family: 'Courier New', Courier, monospace; font-size: x-large; color: black;">SIIP-Funcionarios</h2></caption>
+                       <caption> <h2 style="font-family: 'Courier New', Courier, monospace; font-size: x-large; color: black;">SIIP-Funcionarios
+                               <!--Barra de pesquisa-->
+            <nav class="navbar bg-body-tertiary">
+                                    <div class="container-fluid">
+                                        <form class="d-flex" role="search" action="{{route('consultar.funcionario')}}" method="GET">
+                                            @csrf
+                                        
+                                        <input class="form-control me-2" type="search" name="search"  placeholder="Campo  de pesquisa" aria-label="Search" require>
+                                        <button class="btn btn-outline-success" type="submit">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                                </svg>
+                                        </button>
+                                        </form>
+                                    </div>
+                                    </nav>
+                    </h2>
+
+                                
+                    </caption>
+
                             <thead>
-                                <th>Id</th><th>Nome</th><th>Email</th><th>Permissao</th>
+                                <th>Id</th><th>Nome</th><th>Email</th><th>Metodo</th>
                             </thead>
                             <tbody>
                                 @foreach($funcionarios as $lista)
@@ -129,14 +149,14 @@
     </div>
   </div>
 </div>
-                <!--bottom actualizar
+                <!--bottom actualizar-->
                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#actualizar{{$lista->id}}"><i class="bi bi-person-fill-check"></i></button>
-nicio Modal actualizar
+<!--inicio Modal actualizar-->
 <div class="modal fade" id="actualizar{{$lista->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header" style="background-color: green;">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Cadastro de Funcionarios</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Dados de {{$lista->name}}</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -158,6 +178,7 @@ nicio Modal actualizar
                     <option value="2" selected>Privilegios</option>
                     <option value="0">Chefe de Secretaria</option>
                     <option value="1">Funcionario de secretaria</option>
+                    <option value="2">Docente</option>
                     
                     </select>
                 </div>
@@ -173,7 +194,7 @@ nicio Modal actualizar
     </div>
   </div>
 </div>
-    Fim Modal actualizar-->       
+    <!--Fim Modal actualizar-->       
 
                 </div>                  
 </td>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\disciplina;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\DB;
 
 class disciplinaController extends Controller
 {
@@ -48,9 +49,19 @@ class disciplinaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Request $request)
     {
         //
+                $sql="SELECT *FROM disciplinas
+                WHERE id=$request->search;";
+
+
+                    $disciplinas=DB::select($sql);
+                    if($disciplinas)
+                Alert::toast('Carregando dados','Sucesso');
+              else
+                Alert::error('Procurando disciplina','não encontrado');
+                return view('disciplina', compact('disciplinas'));
     }
 
     /**

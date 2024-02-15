@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class confirmadosController extends Controller
 {
@@ -12,6 +13,13 @@ class confirmadosController extends Controller
     public function index()
     {
         //
+
+        $sql="SELECT * FROM alunos
+        WHERE id in(SELECT aluno FROM matriculas)";
+
+        $alunos=DB::select($sql);
+
+        return view('confirmados', compact('alunos'));
     }
 
     /**
