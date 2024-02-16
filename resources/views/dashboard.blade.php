@@ -120,7 +120,7 @@
       </div>
       <div class="modal-body">
         
-             <form action=""  method="GET" class="row g-3">
+             <form action="{{route('estudante.dados')}}"  method="post" class="row g-3">
                 @csrf
               
               <div>

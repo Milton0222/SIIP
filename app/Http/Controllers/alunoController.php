@@ -177,11 +177,33 @@ class alunoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function consultarDados(Request $request)
     {
         //
-    }
 
+        $sql="SELECT alunos.nome,alunos.identidade,alunos.foto,alunos.genero,alunos.id as 'matricula',alunos.telefone,
+		turmas.classe,turmas.periodo,cursos.nome as 'curso'
+            FROM
+            alunos JOIN matriculas on(alunos.id=matriculas.aluno) JOIN cursos on(cursos.id=matriculas.curso)
+            JOIN turmas on(matriculas.turma=turmas.id)
+            WHERE  alunos.identidade='$request->identidade';";
+
+            $estudante=DB::select($sql);
+            if($estudante){ 
+                Alert::success('Buscando Estudante','Encontrados');
+
+        return view('alunoDetalhes',compact('estudante'));
+     }else{
+        Alert::error('Buscando Estudante','Não Encontrados');
+
+        return redirect()->back();
+
+     }
+    }
+public function requisitarD(Request $request){
+
+    dd($request->all());
+}
     /**
      * Update the specified resource in storage.
      */

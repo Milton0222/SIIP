@@ -52,5 +52,11 @@
         @stack('modals')
 
         @livewireScripts
+
+        
     </body>
+    <script>
+            var rdiv=document.querySelector('#matricula');
+                rdiv.style.display="none";
+        </script>
 </html>
