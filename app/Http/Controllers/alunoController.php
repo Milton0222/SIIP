@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\aluno;
 use App\Models\curso;
-use App\Models\{matricula,turma,falta};
+use App\Models\{declaracao, matricula,turma,falta};
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 use Dompdf\Adapter\PDFLib;
@@ -202,8 +202,93 @@ class alunoController extends Controller
     }
 public function requisitarD(Request $request){
 
-    dd($request->all());
+      $sql="SELECT matriculas.anoLetivo, turmas.classe
+      FROM  matriculas JOIN alunos on(matriculas.aluno=alunos.id)
+                       JOIN turmas on(matriculas.turma=turmas.id)
+                       
+                       WHERE matriculas.aluno=$request->code AND matriculas.anoLetivo='$request->anoLectivo';";
+
+      $alunoM=DB::select($sql);                 
+
+    $alunos=aluno::findorfail($request->code);
+
+        if($alunoM){
+            foreach($alunoM as $lista){
+                $anoF=$lista->classe;
+            }
+                if($request->pagamento !=null){
+
+                    $extensao=$request->pagamento->extension();
+                    $nomeFoto=strtotime('now').".".$extensao;
+                    $request->pagamento->move(public_path('assets/pagamentos'),$nomeFoto);
+             
+                    declaracao::create([
+                        'tipo'=>$request->tipo,
+                        'aluno'=>$request->code,
+                        'anoFrequencia'=>$anoF,
+                        'efeito'=>$request->efeito,
+                        'pagamento'=>$nomeFoto,
+                        'aluno'=>$request->code
+                    ]);  
+                   
+                    Alert::success('Requisitando declaracao','Requisitado.');
+                    return redirect()->route('/');
+
+                }
+        }else{
+                Alert::error("Validando dados","Consulta seus dados de confirmação");
+
+                $sql="SELECT alunos.nome,alunos.identidade,alunos.foto,alunos.genero,alunos.id as 'matricula',alunos.telefone,
+                turmas.classe,turmas.periodo,cursos.nome as 'curso'
+                    FROM
+                    alunos JOIN matriculas on(alunos.id=matriculas.aluno) JOIN cursos on(cursos.id=matriculas.curso)
+                    JOIN turmas on(matriculas.turma=turmas.id)
+                    WHERE  alunos.id=$request->code;";
+        
+                    $estudante=DB::select($sql);
+                 
+        
+                return view('alunoDetalhes',compact('estudante'));
+                    
+        }
+    }
+
+    public function documentos(string $id){
+
+        $estudante=declaracao::where('aluno',$id)->get();
+              $veralu=aluno::findorfail($id)->first();
+          $aluno=$veralu['nome'];
+          $code=$veralu['id'];
+
+        return view('documentosAluno', compact('estudante','aluno','code'));
+    }
+    public function verDeclarao(){
+
+
+        $sql="SELECT  alunos.nome,alunos.id,alunos.pai,alunos.mae,alunos.identidade,
+        matriculas.anoLetivo,turmas.classe,cursos.nome as 'curso',
+        declaracaos.tipo,declaracaos.anoFrequencia,declaracaos.pagamento,declaracaos.efeito,declaracaos.estado,declaracaos.id as 'code'
+        FROM alunos JOIN matriculas on(alunos.id=matriculas.aluno)
+        			JOIN turmas on(turmas.id=matriculas.turma)
+                    JOIN cursos on(matriculas.curso=cursos.id)
+                    JOIN declaracaos on(alunos.id=declaracaos.aluno);";
+            $declaracao=DB::select($sql);
+
+        return view('declaracao', compact('declaracao'));
+    }
+public function updateDeclaracao(Request $request, string $id){
+
+    $declaracao=declaracao::findorfail($id);
+     
+         if($declaracao){ 
+                          $declaracao->update(['estado'=>$request->estado]);
+
+                      Alert::success('Elaborando Decclaracão',"Feito");
+         }
+
+    return redirect()->back();
 }
+
     /**
      * Update the specified resource in storage.
      */

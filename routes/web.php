@@ -74,3 +74,6 @@ Route::middleware([
 Route::get('/Confirmados/ver',[confirmadosController::class, 'index'])->name('confirmado.index')->middleware('auth');
 Route::post('Estudante/buscar',[alunoController::class,'consultarDados'])->name('estudante.dados')->middleware('auth');
 Route::post('Declaracao/requisitar',[alunoController::class,'requisitarD'])->name('estudante.requisitar')->middleware('auth');
+Route::get('/aluno/documentos/{id}',[alunoController::class,'documentos'])->name('estudante.docuumentos');
+Route::get('/declaracao/show',[alunoController::class,'verDeclarao'])->name('declaracao.index');
+Route::get('/declaracao/estado/{id}',[alunoController::class,'updateDeclaracao'])->name('declaracao.estado');

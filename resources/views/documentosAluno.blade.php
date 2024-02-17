@@ -1,4 +1,5 @@
-<x-app-layout> 
+<x-app-layout>
+
 
 <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
@@ -6,14 +7,21 @@
                     <div class="sb-sidenav-menu" style="background-color: gainsboro;">
                         <div class="nav ">
 
-                      @foreach($estudante as $aes)
-                        <a href="{{route('estudante.docuumentos',$aes->matricula)}}"  class="nav-link">
+                      
+                        <a href="{{route('estudante.docuumentos',$code)}}"  class="nav-link">
                               <button  type="button" class="btn" style="color: white;">
                                 Documentos
                               </button>
 
                         </a>
-                           @endforeach
+                        <!--
+                        <a href=""  class="nav-link">
+                              <button  type="button" class="btn" style="color: white;">
+                                Pauta
+                              </button>
+
+                        </a>-->
+                           
   
                         </div>
                     </div>
@@ -30,57 +38,38 @@
                     <div class="container-fluid px-4">
 
 
-        <caption> <h2 style="font-family: 'Courier New', Courier, monospace; font-size: x-large; color: black;">SIIP-Estudante </h2></caption>
+        <caption> <h2 style="font-family: 'Courier New', Courier, monospace; font-size: x-large; color: black;">SIIP-Documentos </h2></caption>
         
-@foreach($estudante as $lista)
-        <form  class="row g-3">
-             
-                <div>
-                <img src="/assets/arquivos/{{$lista->foto}}" alt="FOOTO" style="border-radius: 30px; width: 60px; height: 60px; margin: auto; box-shadow: 2px 2px 10px black;">
-
-                <label style="margin: auto; margin-left: 440px;">{{$lista->nome}}:: {{$lista->matricula}}</label>
-                
-
-              </div>
-              
-              <div>
-                <x-label for="name" value="{{ __('Nº de identidade') }}" />
-                <x-input id="name" class="block mt-1 w-full" type="text" max='14' min='14' name="identidade" value="{{$lista->identidade}}" required autofocus autocomplete="nome" />
-              </div>
-
-            <div class="mt-4">
-                <x-label for="password_confirmation" value="{{ __('Periodo') }}" />
-                <x-input id="password_confirmation" class="block mt-1 w-full" type="text" value="{{$lista->periodo}}" required autocomplete="Benguela" />
-            </div>
-            <div class="mt-4">
-                <x-label for="password_confirmation" value="{{ __('Telefone') }}" />
-                <x-input id="password_confirmation" class="block mt-1 w-full" type="text" value="{{$lista->telefone}}" name="telefone" required  />
-            </div>
-                <div class="col-md-4">
-                    <label for="inputState" class="form-label">Genero</label>
-                    <select id="inputState" class="form-select" name="genero">
-                    <option value="{{$lista->genero}}" selected>{{$lista->genero}}</option>
-                
-                    </select>
-                </div>
-                <div class="col-md-4">
-                    <label for="inputState" class="form-label">Curso</label>
-                    <select id="inputState" class="form-select" name="">
-                    <option value="{{$lista->curso}}" selected>{{$lista->curso}}</option>
-                
-                    </select>
-                  
-                </div>
-               
-                <div class="col-md-4">
-                <label for="formFileSm" class="form-label">Ano de Frequência</label>
-                <select id="inputState" class="form-select" name="">
-                    <option value="{{$lista->classe}}" selected>{{$lista->classe}}</option>
-                
-                    </select>
-                
-               </div>
-</form>
+        <table class="table table-hover caption-top">
+        <caption> <h2 style="font-family: 'Courier New', Courier, monospace; font-size: x-large; color: black;">{{$aluno}}-Declarações</h2></caption>
+            <thead>
+                <th>TIPO</th>
+                <th>ANO DE FREQUÊNCIA</th>
+                    <th>ESTADO</th>
+                    <TH>EFEITO</TH>
+                <th>PAGAMENTO</th>
+                <th>OBS</th>
+            </thead>
+            <tbody>
+                @foreach($estudante as $lista)
+                <tr>
+                    <td>{{$lista->tipo}}</td>
+                    <td>{{$lista->anoFrequencia}}</td>
+               <td>{{$lista->estado}}</td>
+               <td>  <textarea name="efeito" id="" cols="39" rows="2">{{$lista->efeito}}</textarea></td>
+                    <td><a href="/assets/pagamentos/{{$lista->pagamento}}">Ver</a></td>
+                    <td>
+                        @if($lista->estado=="Pronto")
+                              Levantar sua Declaração na secretaria.
+                        @else
+                                 Aguardar o processo de analise.
+                        @endif
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+        
               
                <hr>
                <div style="background-color: green; height: 30px;">
@@ -113,7 +102,7 @@
                             <div class="col-md-4">
                               
                                 <input class="form-control form-control-sm" id="matricula" type="numeric" name="code"  value="{{$lista->matricula}}" >
-                                <textarea name="efeito" id="" cols="39" rows="2">Escrever o efeito da Declaração</textarea>
+                                <textarea name="efeito" id="" cols="39" rows="2">Escrver o efeito da Declaração</textarea>
                             </div>
 
                             <div class="modal-footer">
@@ -124,7 +113,7 @@
                             </div>
 
                       </form>
-                      @endforeach
+                  
                 
                 </div>
           
@@ -156,4 +145,4 @@
                 </footer>
             </div>
         </div>
-</x-app-layout>  
+</x-app-layout> 

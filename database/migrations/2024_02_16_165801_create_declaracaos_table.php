@@ -17,6 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('aluno');
             $table->string('anoFrequencia');
             $table->string('pagamento');
+            $table->text('efeito');
+            $table->enum('estado',['Em analise','Pronto','Pendente'])->default('Em analise');
             $table->foreign('aluno')->references('id')->on('alunos')->onDelete('cascade');
             $table->timestamps();
         });

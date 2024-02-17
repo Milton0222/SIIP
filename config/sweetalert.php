@@ -147,7 +147,7 @@ return [
     |
     */
 
-    'show_confirm_button' => env('SWEET_ALERT_CONFIRM_BUTTON', true),
+    'show_confirm_button' => env('SWEET_ALERT_CONFIRM_BUTTON', false),
 
     /*
     |--------------------------------------------------------------------------

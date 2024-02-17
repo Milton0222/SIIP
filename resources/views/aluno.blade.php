@@ -18,6 +18,12 @@
                               </button>
 
                         </a>
+                        <a href="{{route('declaracao.index')}}"  class="nav-link">
+                              <button  type="button" class="btn" style="color: white;">
+                                Declaração
+                              </button>
+
+                        </a>
                             <a class="nav-link" href="#">
                                 <div class="sb-nav-link-icon"><i class="bi bi-person-dash-fill"></i></div>
                                 <button type="button"  class="btn" style="color: white;"
