@@ -83,13 +83,19 @@
                                 </tbody>
                     </table>
 
-                    <div style="padding:150px; padding-left: 400px; border-radius: 30%; box-shadow: 2px 2px 20px black;">
-                       
-                        <img src="{{asset('imagens/ip.jpg')}}" alt="INSTITUTO POLITECNICO" width="200px" style="border-radius: 100px; box-shadow: 1px 1px  10px green;">
+                    <div  class="painel">
+                          <div class="filho"><span>+{{$aluno}}</span> <a href="" class="nav-link">Alunos</a></div>
+                          <div class="filho"><span>+{{$aprovados}}</span> <a href="" class="nav-link">Aprovados</a></div>
+                          <div class="filho"><span>+{{$reprovados}}</span><a href="" class="nav-link">Reprovados</a></div>
+                               
                     </div>
+                    
                     </div>
+                    <div>
+                    <img src="{{asset('imagens/ip.jpg')}}" alt="INSTITUTO POLITECNICO" width="200px" class="imagem" style="border-radius: 100px; box-shadow: 1px 1px  10px green;">
+                    </div>
+                    
                 </main>
-
 
 
         </div>

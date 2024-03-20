@@ -53,13 +53,13 @@
             <tbody>
                 @foreach($estudante as $lista)
                 <tr>
-                    <td>{{$lista->tipo}}</td>
-                    <td>{{$lista->anoFrequencia}}</td>
-               <td>{{$lista->estado}}</td>
-               <td>  <textarea name="efeito" id="" cols="39" rows="2">{{$lista->efeito}}</textarea></td>
-                    <td><a href="/assets/pagamentos/{{$lista->pagamento}}">Ver</a></td>
+                    <td>{{$lista?->tipo}}</td>
+                    <td>{{$lista?->anoFrequencia}}</td>
+               <td>{{$lista?->estado}}</td>
+               <td>  <textarea name="efeito" id="" cols="39" rows="2">{{$lista?->efeito}}</textarea></td>
+                    <td><a href="/assets/pagamentos/{{$lista?->pagamento}}">Ver</a></td>
                     <td>
-                        @if($lista->estado=="Pronto")
+                        @if($lista?->estado=="Pronto")
                               Levantar sua Declaração na secretaria.
                         @else
                                  Aguardar o processo de analise.
@@ -80,7 +80,7 @@
                <hr>
                 <div >
                     
-                      <form action="{{route('estudante.requisitar')}}" method="POST" class="table" enctype="multipart/form-data">
+                      <form action=""  class="table" enctype="multipart/form-data">
                                 @csrf
                                  
                             <div class="col-md-4">
@@ -101,7 +101,7 @@
                             </div>
                             <div class="col-md-4">
                               
-                                <input class="form-control form-control-sm" id="matricula" type="numeric" name="code"  value="{{$lista->matricula}}" >
+                                <input class="form-control form-control-sm" id="matricula" type="numeric" name="code"  value="" >
                                 <textarea name="efeito" id="" cols="39" rows="2">Escrver o efeito da Declaração</textarea>
                             </div>
 

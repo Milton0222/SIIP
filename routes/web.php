@@ -8,6 +8,8 @@ use App\Http\Controllers\pautaConttroller;
 use App\Http\Controllers\turmaController;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Post;
+use App\Models\aluno;
+use App\Models\pauta;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +23,11 @@ use App\Livewire\Post;
 */
 
 Route::get('/', function () {
-    return view('dashboard');
+
+    $aluno=aluno::count();
+    $aprovados=pauta::where('classificacao','Aprovado')->count();
+    $reprovados=pauta::where('classificacao','Reprovado')->count();
+    return view('dashboard',compact('aluno','aprovados','reprovados'));
 })->name('/')->middleware(['auth']);
 Route::get('/post', Post::class);
 
@@ -67,7 +73,10 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        $aluno=aluno::count();
+    $aprovados=pauta::where('classificacao','Aprovado')->count();
+    $reprovados=pauta::where('classificacao','Reprovado')->count();
+        return view('dashboard',compact('aluno','aprovados','reprovados'));
     })->name('dashboard');
 });
 
